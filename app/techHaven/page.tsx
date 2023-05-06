@@ -6,7 +6,12 @@ import { useEffect } from 'react'
 import Link from "next/link"
 import Image from "next/image"
 
-const RatingStar = ({ rating, maxRating=5 }) => {
+interface RatingStarProps {
+    rating: number,
+    maxRating?: number
+}
+
+const RatingStar: React.FC<RatingStarProps> = ({ rating, maxRating=5 }) => {
     // Calculate the number of full stars
     const fullStars = Math.floor(rating);
   
@@ -55,7 +60,10 @@ const RatingStar = ({ rating, maxRating=5 }) => {
   };
 
 
-const ProductDisplay = ()=>{
+  interface pdStr {
+    chosen: string
+  }
+const ProductDisplay:React.FC<pdStr> = ()=>{
 
     const desktopProducts = [
         {
@@ -332,7 +340,7 @@ const ProductDisplay = ()=>{
    
     //focus at start of image scroll
     useEffect(() => {
-    const imageScrollContainer = document.querySelector('#thProductsCont');
+    const imageScrollContainer = document.querySelector('#thProductsCont') as HTMLElement;
     
     imageScrollContainer.scrollTo({
         left: 0,
