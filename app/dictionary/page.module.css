@@ -1,0 +1,153 @@
+
+/************************************************DICTIONARY*******************************************************/
+.dictionaryMain {
+    overflow: hidden;
+    min-height: 100vh;
+    text-align: center;
+    position: relative;
+  }
+  
+  .dicSection {
+    padding: 2rem;
+  }
+  
+  .dicTopSection {
+    display: grid;
+    justify-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    z-index: 1;
+    position: relative;
+  }
+  
+  .dicTopSection > h2:first-of-type {
+    text-decoration: line-through;
+    font-size: var(--fs-500);
+  }
+  
+  .dicTopSection > h1:first-of-type {
+    font-size: var(--fs-500);
+    font-weight: bold;
+    margin-top: -1rem;
+  }
+  
+  .dicInputCont {
+    border-radius: 0.2rem;
+    border: 1px solid rgb(var(--blackSwitch));
+    text-align: start;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .dicInputCont > * {
+    padding: 1rem;
+  }
+  
+  .dicInputCont > :first-child {
+    flex-grow: 9999;
+    flex-basis: 100px;
+    flex-shrink: 1;
+  }
+  
+  .dicInputCont > :last-child {
+    flex-grow: 1;
+    flex-basis: 50px;
+    flex-shrink: 1;
+  }
+  
+  .dicInputCont > button {
+    background-color: rgb(var(--mainColor));
+    cursor: pointer;
+    border-bottom-left-radius: 0.2rem;
+    border-top-left-radius: 0.2rem;
+  }
+  
+  .dicInputCont > button:hover {
+    filter: brightness(90%);
+  }
+  
+  .midContainer {
+    display: grid;
+    justify-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  
+  .midContainer > P {
+    font-size: var(--fs-600);
+  }
+  
+  .meaningsCont {
+    counter-reset: my-counterM; /* initialize the counter */
+    text-align: start;
+    display: grid;
+    gap: 1rem;
+  }
+  
+  .meaningsCont > * {
+    counter-increment: my-counter; /* increment the counter for each li element */
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  
+  .meaningsCont > *::before {
+    content: counter(my-counter);
+    color: rgb(var(--mainColor));
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    border-bottom: 2px dotted rgb(var(--blackSwitch));
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    text-align: center;
+  }
+  
+  .dictionaryFoundWord {
+    color: rgb(var(--mainColor));
+    font-weight: bold;
+  }
+  
+  .moveParrot {
+    width: 20vh;
+    transition: all 4s, width 3s;
+    animation: moveBird 4s infinite alternate, scaleBird 8s infinite linear;
+    position: absolute;
+  }
+  
+  .blue :first-child {
+    fill: rgb(var(--mainColor));
+  }
+  
+  @keyframes scaleBird {
+    0% {
+      scale: -1 1;
+    }
+  
+    49% {
+      scale: -1 1;
+    }
+  
+    50% {
+      scale: 1 1;
+    }
+  
+    99% {
+      scale: 1 1;
+    }
+  
+    100% {
+      scale: -1 1;
+    }
+  }
+  
+  @keyframes moveBird {
+    0% {
+      translate: -500%;
+    }
+  
+    100% {
+      translate: 120vw;
+    }
+  }
