@@ -8,14 +8,15 @@ import eyeOutline from "../../public/LearnedStuff/eye outline only.png"
 function Learned() {
 
   useEffect(()=>{
-    const eyeCont = document.querySelector("#eyeCont")
-    const realEye = document.querySelector("#realeye")
+    const eyeCont = document.querySelector("#eyeCont") as HTMLElement
+    const realEye = document.querySelector("#realeye") as HTMLElement
 
-    const moveEyes = ({clientX, clientY})=>{
+    const moveEyes = (event: MouseEvent)=>{
+      const {clientX, clientY} = event
       const mouseX = clientX
       const mouseY = clientY
 
-      const anchor = document.querySelector("#anchor")
+      const anchor = document.querySelector("#anchor") as HTMLElement
       const rekt = anchor.getBoundingClientRect()
       const anchorX = rekt.left + rekt.width / 2
       const anchorY = rekt.top + rekt.height / 2
@@ -27,7 +28,7 @@ function Learned() {
 
     }
 
-    const angle = (cx, cy, ex, ey)=>{
+    const angle = (cx:number, cy:number, ex:number, ey:number)=>{
       const dy = ey - cy
       const dx = ex - cx
       const rad = Math.atan2(dy, dx)
