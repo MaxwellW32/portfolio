@@ -41,7 +41,7 @@ function TitleText() {
       canEdit: false,
     },
     {
-      statement: "LET&apos;S",
+      statement: "LET'S",
       glitchText: "CREATE",
       canEdit: false,
     },
