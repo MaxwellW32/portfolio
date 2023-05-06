@@ -101,7 +101,7 @@ function Learned() {
         </p>
         <p>
           01/19/23 You can set custom variables that are specific to each
-          element and only seen by their children. "--varName : anyProperty".
+          element and only seen by their children. &quo--varName : anyProperty&quo.
           Really useful
         </p>
       </section>
