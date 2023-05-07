@@ -434,6 +434,7 @@ function ToDoList() {
 	//when you click it becomes selected
 	//when you click again its no longer selected
 	//delete button deletes all selected 
+	//hi
 	function handleNewToDoShowing() {
 		setAddNewTodoShowing(true);
 	}
