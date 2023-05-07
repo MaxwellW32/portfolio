@@ -261,6 +261,17 @@ export default function Navbar() {
               </div>
             </ul>
             <ul>
+              <p>Resume</p>
+              <div>
+                <li>
+                  <Link className="detectClickTMobile" href="/resume">
+                    Latest Updated
+                  </Link>
+                </li>
+              </div>
+            </ul>
+
+            <ul>
               <p>What I&apos;ve Learned</p>
 
               <div>
