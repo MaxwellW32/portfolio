@@ -260,7 +260,7 @@ const ToDoSingleView: React.FC<toDoSingleProps> = ({eachToDoObj = initialToDoSta
 						{singleToDo.toDoVideos &&
 							singleToDo.toDoVideos.map(eachVidObj => {
 								return (
-									<div className={styles.toDoSvgYtCont}>
+									<div key={eachVidObj.uniqueId} className={styles.toDoSvgYtCont}>
 										<svg
 											onClick={() => {
 												removeVideo(eachVidObj.uniqueId);
