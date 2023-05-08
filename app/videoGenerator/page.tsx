@@ -5,6 +5,8 @@ import axios from "axios";
 
 const apiKey = process.env.REACT_APP_YOUTUBE_API_KEY;
 
+console.log(`key : ${apiKey}`)
+
 function MyYoutubeCont(props: {videoId: string; gridLetter: string}) {
 const { videoId, gridLetter } = props;
 
