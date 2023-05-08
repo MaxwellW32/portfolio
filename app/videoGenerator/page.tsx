@@ -3,8 +3,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./page.module.css"
 import axios from "axios";
 
-// const apiKey = process.env.REACT_APP_YOUTUBE_API_KEY;
-const apiKey = "sup";
+const apiKey = process.env.REACT_APP_YOUTUBE_API_KEY;
 
 function MyYoutubeCont(props: {videoId: string; gridLetter: string}) {
 const { videoId, gridLetter } = props;

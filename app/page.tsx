@@ -223,6 +223,12 @@ function Home() {
   const projectGroup = [
     {
       imgUrl:
+        "https://images.pexels.com/photos/7886853/pexels-photo-7886853.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      text: "Video downloader",
+      link: "/downloader",
+    },
+    {
+      imgUrl:
         "https://images.pexels.com/photos/949592/pexels-photo-949592.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       text: "Video Generator",
       link: "/videoGenerator",

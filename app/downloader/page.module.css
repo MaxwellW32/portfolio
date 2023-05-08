@@ -1,0 +1,17 @@
+.urlCont{
+    display: grid;
+    grid-auto-flow: column;
+    max-width: 80%;
+    margin-inline: auto;
+}
+
+
+.urlCont > *{
+    margin: 0;
+}
+
+.urlInput{
+    border: 1px solid white;
+    height: 100%;
+    padding: 1rem;
+}
