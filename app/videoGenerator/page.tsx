@@ -3,11 +3,15 @@ import React, { useState, useEffect } from "react";
 import styles from "./page.module.css"
 import axios from "axios";
 
-const apiKey = process.env.REACT_APP_YOUTUBE_API_KEY;
-
-console.log(`key : ${apiKey}`)
 
 function MyYoutubeCont(props: {videoId: string; gridLetter: string}) {
+
+  const apiKey = process.env.REACT_APP_YOUTUBE_API_KEY;
+  
+  console.log(apiKey)
+  
+  console.log(`key : ${apiKey}`)
+
 const { videoId, gridLetter } = props;
 
     return (
@@ -67,6 +71,11 @@ function VideoGenerator() {
   }, [succGotFromYoutube]);
 
   async function fetchData() {
+
+    const apiKey = process.env.REACT_APP_YOUTUBE_API_KEY;
+
+
+  
     try {
       // throw new Error("Something went wrong.");
       const response = await axios.get(
