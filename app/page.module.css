@@ -211,7 +211,7 @@ transform-style: preserve-3d;
 }
 .hmBackgroundImgCont {
 min-height: 100vh;
-background-image: url(https://images.pexels.com/photos/2653362/pexels-photo-2653362.jpeg);
+background-image: url(https://images.pexels.com/photos/2653362/pexels-photo-2653362.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1190&dpr=1);
 background-size: cover;
 background-attachment: fixed;
 background-position-y: center;
@@ -243,7 +243,7 @@ top: 0;
 left: 0;
 height: 1rem;
 width: 100%;
-background-image: url(https://themeforest.unitedthemes.com/themes/brooklyn/yellow/images/divider1.png);
+background-image: url(../public/divider.png);
 background-repeat: repeat-x;
 background-position: top center;
 }
@@ -251,6 +251,7 @@ background-position: top center;
 .gYellow {
 color: rgb(var(--mainColor));
 }
+
 .glitch {
 position: relative;
 font-weight: bold;
@@ -532,6 +533,10 @@ font-weight: 400;
 text-align: center;
 }
 
+.dropLine h1::before {
+  background-color: rgb(var(--secondColor));
+ }
+  
 
 .borderAnimation {
 position: relative;
@@ -735,7 +740,7 @@ line-height: 1.4rem;
 
 .homeUiEg {
 /* background-color: black; */
-background-image: url("https://images.pexels.com/photos/271667/pexels-photo-271667.jpeg");
+background-image: url(https://images.pexels.com/photos/271667/pexels-photo-271667.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1190&dpr=1);
 background-size: cover;
 background-position: center;
 position: relative;

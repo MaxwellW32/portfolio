@@ -161,8 +161,8 @@ h1::before {
   translate: -50%;
   background-repeat: repeat-x;
   background-position: top center;
-  -webkit-mask-image: url(https://themeforest.unitedthemes.com/themes/brooklyn/yellow/images/divider1.png); /* Replace with the path to your mask image */
-  mask-image: url(https://themeforest.unitedthemes.com/themes/brooklyn/yellow/images/divider1.png);
+  -webkit-mask-image: url(../public/divider.png);
+  mask-image: url(../public/divider.png);
   background-color: rgb(var(--mainColor));
 }
 
