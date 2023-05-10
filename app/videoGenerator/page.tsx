@@ -1,16 +1,11 @@
 "use client"
+
 import React, { useState, useEffect } from "react";
 import styles from "./page.module.css"
 import axios from "axios";
 
 
 function MyYoutubeCont(props: {videoId: string; gridLetter: string}) {
-
-  const apiKey = process.env.REACT_APP_YOUTUBE_API_KEY;
-  
-  console.log(apiKey)
-  
-  console.log(`key : ${apiKey}`)
 
 const { videoId, gridLetter } = props;
 
@@ -31,7 +26,10 @@ const { videoId, gridLetter } = props;
   );
 }
 
+
+
 function VideoGenerator() {
+
   const [videoIds, setVideoIds] = useState<string[]>([]);
   const [searchString, setSearchString] = useState("cats");
   const [maxSearchNumber, setMaxSearchNumber] = useState(1);
@@ -72,34 +70,19 @@ function VideoGenerator() {
 
   async function fetchData() {
 
-    const apiKey = process.env.REACT_APP_YOUTUBE_API_KEY;
-
-
-  
     try {
-      // throw new Error("Something went wrong.");
-      const response = await axios.get(
-        "https://www.googleapis.com/youtube/v3/search",
-        {
-          params: {
-            part: "snippet",
-            maxResults: maxSearchNumber,
-            q: searchString,
-            type: "video",
-            key: apiKey,
-          },
-        }
-      );
 
-      // do something with the response data
+      const response = await axios.get(`/api/ytVids?searchString=${searchString}&maxSearchNumber=${maxSearchNumber}`)
+      const allVidIds = response.data.allVidIds
+
       setSuccGotFromYoutube(true);
-      setVideoIds(response.data.items);
-    } catch (error) {
+      setVideoIds(allVidIds);         
+        
+      } catch (error) {
       console.log(`Hi max Error occurred: ${error}`);
       setSuccGotFromYoutube(false);
-    }
 
-    // backup indiv one const videoId = response.data.items[0].id.videoId;
+    }
   }
 
   function getRandomWord() {
@@ -226,12 +209,7 @@ function VideoGenerator() {
               <MyYoutubeCont
                 key={index}
                 gridLetter={gridLetters[index] ? gridLetters[index] : "x"}
-                videoId={
-                  succGotFromYoutube
-                    // ? videoIds[index].id.videoId
-                    ? videoIds[index]
-                    : videoIds[index]
-                }
+                videoId={videoIds[index]}
               />
             );
           })}
