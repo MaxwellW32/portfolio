@@ -21,9 +21,9 @@ export async function GET(request: Request) {
     }
   );
 
-  const allVidIds = response.data.items.map((eachObj: any) => eachObj.id.videoId);
+  const allVidsInfo = response.data.items
 
-  return NextResponse.json({allVidIds})
+  return NextResponse.json({allVidsInfo})
 
 }
 

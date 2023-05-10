@@ -41,6 +41,21 @@ function VideoGenerator() {
 
   const gridLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i"];
 
+  const myBackupVideos = [
+    "ktBMxkLUIwY",
+    "tcaw6lzYt1Q",
+    "rULyu_wFWGU",
+    "ZD6C498MB4U",
+    "ytQ5CYE1VZw",
+    "iI34LYmJ1Fs",
+    "h3EJICKwITw",
+    "3JBKp0YbSEc",
+    "r_0JjYUe5jo",
+    "oihY8GiXXgQ",
+    "nceqQyqIa5o",
+    "1RdrlReJmTY",
+    "RRl_C73vFtQ",
+  ];
   useEffect(() => {
     //program start fetch
     fetchData();
@@ -49,21 +64,6 @@ function VideoGenerator() {
   useEffect(() => {
     //load backups on api fail
     if (!succGotFromYoutube) {
-      const myBackupVideos = [
-        "ktBMxkLUIwY",
-        "tcaw6lzYt1Q",
-        "rULyu_wFWGU",
-        "ZD6C498MB4U",
-        "ytQ5CYE1VZw",
-        "iI34LYmJ1Fs",
-        "h3EJICKwITw",
-        "3JBKp0YbSEc",
-        "r_0JjYUe5jo",
-        "oihY8GiXXgQ",
-        "nceqQyqIa5o",
-        "1RdrlReJmTY",
-        "RRl_C73vFtQ",
-      ];
       setVideoIds((prevIds) => [...myBackupVideos, ...prevIds]);
     }
   }, [succGotFromYoutube]);
@@ -73,7 +73,9 @@ function VideoGenerator() {
     try {
 
       const response = await axios.get(`/api/ytVids?searchString=${searchString}&maxSearchNumber=${maxSearchNumber}`)
-      const allVidIds = response.data.allVidIds
+      const allVidsInfo = response.data.allVidsInfo
+
+      const allVidIds = allVidsInfo.map((eachObj: any) => eachObj.id.videoId);
 
       setSuccGotFromYoutube(true);
       setVideoIds(allVidIds);         
