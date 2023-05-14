@@ -245,7 +245,7 @@ const DisplayVid: React.FC<dv> = ({id, muted=true}) =>{
               title="YouTube video player"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
-            ></iframe>
+    ></iframe>
   )
 }
 export default Perspective;

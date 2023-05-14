@@ -2,7 +2,7 @@
 .mainNav {
   top: 0;
   left: 0;
-  position: relative;
+  position: sticky;
   min-height: 3rem;
   width: 100%;
   display: flex;
@@ -190,12 +190,28 @@ position: fixed;
 top: 0;
 left: 0;
 z-index: 999;
-translate: var(--playerX) var(--playerY);
 transition: translate 400ms;
-transform-style: preserve-3d;
-
-/* scale: 3; */
 }
+
+
+.playerTwo {
+  width: var(--playerWidth);
+  height: var(--playerHeight);
+  /* background-color: green; */
+  background-image: url(../public/Home/fighter.webp);
+  background-size: contain;
+  background-position: center;
+  /* display: none; */
+  background-repeat: no-repeat;
+  filter: hue-rotate(30);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  transition: translate 400ms;
+  
+  /* scale: 3; */
+  }
 
 .player:hover::before {
 content: "Press WASD to move";
