@@ -177,54 +177,8 @@
 /*************************************************Home*****************************************************/
 
 
-.player {
-width: var(--playerWidth);
-height: var(--playerHeight);
-/* background-color: green; */
-background-image: url(../public/Home/fighter.webp);
-background-size: contain;
-background-position: center;
-display: none;
-background-repeat: no-repeat;
-position: fixed;
-top: 0;
-left: 0;
-z-index: 999;
-transition: translate 400ms;
-}
 
 
-.playerTwo {
-  width: var(--playerWidth);
-  height: var(--playerHeight);
-  /* background-color: green; */
-  background-image: url(../public/Home/fighter.webp);
-  background-size: contain;
-  background-position: center;
-  /* display: none; */
-  background-repeat: no-repeat;
-  filter: hue-rotate(30);
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 999;
-  transition: translate 400ms;
-  
-  /* scale: 3; */
-  }
-
-.player:hover::before {
-content: "Press WASD to move";
-text-align: center;
-top: -2rem;
-left: -50%;
-width: 300%;
-transform: rotateY(var(--customInstructions));
-position: fixed;
-transform-style: preserve-3d;
-
-/* font-size: 0.5rem;*/
-}
 .hmBackgroundImgCont {
 min-height: 100vh;
 background-image: url(https://images.pexels.com/photos/2653362/pexels-photo-2653362.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1190&dpr=1);

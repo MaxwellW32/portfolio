@@ -2,9 +2,11 @@
 import styles from './page.module.css'
 // import { Inter } from 'next/font/google'
 import TitleText from './HomePageComponents/TitleText';
+import MyPlayer from "./HomePageComponents/MyPlayer"
 
 import Link from 'next/link'
 import ContactForm from './HomePageComponents/ContactForm';
+
 
 function Socials(
   { name, heading, children } 
@@ -189,6 +191,7 @@ function Home() {
 
   return (
     <div id="homeContDiv">
+      <MyPlayer/>
       
       <div className={styles.hmBackgroundImgCont}>
         <TitleText />

@@ -1,0 +1,24 @@
+
+
+
+.playerDiv{
+    position: absolute;
+    height: 100dvh;
+    width: 100%;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    transition: all 200ms;
+}
+
+
+
+.player{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    background-image: url("../../public/fighter.webp");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
