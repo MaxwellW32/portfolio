@@ -6,6 +6,7 @@ import MyPlayer from "./HomePageComponents/MyPlayer"
 
 import Link from 'next/link'
 import ContactForm from './HomePageComponents/ContactForm';
+import { useEffect, useState } from 'react';
 
 
 function Socials(

@@ -1,7 +1,7 @@
 
 
 
-.playerDiv{
+.playerCanvasDiv{
     position: absolute;
     height: 100dvh;
     width: 100%;
@@ -9,6 +9,11 @@
     top: 0;
     left: 0;
     transition: all 200ms;
+    pointer-events: none;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    color: white;
 }
 
 
@@ -21,4 +26,15 @@
     background-image: url("../../public/fighter.webp");
     background-repeat: no-repeat;
     background-size: contain;
+}
+
+.platform{
+    position: absolute;
+    border: 1px solid green !important;
+
+}
+
+.playerBottomLine{
+    position: absolute;
+    border: 1px solid blue !important;
 }
