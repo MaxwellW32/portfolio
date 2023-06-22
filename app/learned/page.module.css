@@ -1,19 +1,19 @@
 
-/*main bg*/
 .LearnDiv {
     /* background-color: red; */
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-top: 3rem;
+    width: 100%;
   }
-  
-  .LearnDiv section {
-    min-width: 80vw;
-    border-radius: 2rem;
-    padding: 1rem;
-  }
-  
+
+.LearnDiv section {
+  min-width: 80vw;
+  border-radius: 2rem;
+  padding: 1rem;
+}
+
   
   .theeye{
     /* font-size: var(--fs-xl); */
@@ -24,8 +24,8 @@
   }
   
   .myCont{
+    width: 100%;
     height: 100%;
-    aspect-ratio: 16/9;
     overflow: hidden;
     position: fixed;
     top: 0;
@@ -34,13 +34,13 @@
     z-index: -1;
   }
   
-  .myCont > *{
+  .myCont *{
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
   }
   
   
@@ -50,9 +50,10 @@
     position: absolute;
     top: 0;
     left: 0;
-    translate: -5%;
     aspect-ratio: 16/9;
     object-fit: contain;
+    transition: translate 400ms;
+    translate: -5%;
   }
   
   @media only screen and (min-width: 800px) {

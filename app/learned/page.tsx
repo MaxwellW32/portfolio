@@ -5,26 +5,60 @@ import React, { useState, useEffect, useRef, useMemo } from "react";
 import eye from "../../public/LearnedStuff/eyecool.png"
 import eyeShadow from "../../public/LearnedStuff/eye shadow.png"
 import eyeOutline from "../../public/LearnedStuff/eye outline only.png"
+
 function Learned() {
 
   useEffect(()=>{
+    //move eye with cursor
     const eyeCont = document.querySelector("#eyeCont") as HTMLElement
     const realEye = document.querySelector("#realeye") as HTMLElement
+    const anchor = document.querySelector("#anchor") as HTMLElement
+    const testT = document.querySelector("#testText") as HTMLElement
+    let eyeMiddleFocused = false
 
     const moveEyes = (event: MouseEvent)=>{
-      const {clientX, clientY} = event
-      const mouseX = clientX
-      const mouseY = clientY
+      const {clientX: mouseX, clientY: mouseY} = event
 
-      const anchor = document.querySelector("#anchor") as HTMLElement
       const rekt = anchor.getBoundingClientRect()
       const anchorX = rekt.left + rekt.width / 2
       const anchorY = rekt.top + rekt.height / 2
 
-      const angleDeg = angle(mouseX, mouseY, anchorX, anchorY)
+      let distanceX = anchorX-mouseX
+      let distanceY = anchorY-mouseY
 
-      eyeCont.style.transform = `rotate(${angleDeg}deg)`
-      realEye.style.rotate = `${angleDeg*-1}deg`
+      if (distanceX < 0){
+        distanceX *= -1
+      }
+
+      if (distanceY < 0){
+        distanceY *= -1
+      }
+
+      let limit = 70
+      if (distanceX < limit && distanceY < limit){
+        eyeMiddleFocused = true
+
+        realEye.style.transition = `translate 1s`
+        realEye.style.translate = `0%`
+
+
+      }else{
+
+        if (eyeMiddleFocused){
+          realEye.style.translate = `-5%`
+
+          setTimeout(()=>{
+            realEye.style.transition = `translate 400ms`
+          },1000)
+
+          eyeMiddleFocused = false
+        }
+
+              const angleDeg = angle(mouseX, mouseY, anchorX, anchorY)
+        
+              eyeCont.style.transform = `rotate(${angleDeg}deg)`
+              realEye.style.rotate = `${angleDeg*-1}deg`
+      }
 
     }
 
