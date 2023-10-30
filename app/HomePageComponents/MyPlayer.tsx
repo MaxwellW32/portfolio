@@ -4,25 +4,25 @@ import styles from './page.module.css'
 
 //intersection observe
 //get working with 1 platform
- 
-export default function MyPlayer(){
 
-  useEffect(()=>{
+export default function MyPlayer() {
+
+  useEffect(() => {
     startAll()
-  },[])
+  }, [])
 
-  function startAll(){    
- 
+  function startAll() {
+
     interface PlayerStats {
       width: number;
       height: number;
       step: number;
       top: number;
       left: number;
-      directionFacing: string;    
+      directionFacing: string;
     }
 
-        
+
     interface collisionObjs {
       [key: string]: {
         floorElement: HTMLElement,
@@ -30,27 +30,27 @@ export default function MyPlayer(){
       }
     }
 
-    const player1Info : PlayerStats = {
+    const player1Info: PlayerStats = {
       width: 50,
       height: 76,
-      step:3,
+      step: 3,
       top: 0,
       left: 0,
       directionFacing: "left",
     }
 
     // const collsnElsMaster:collisionObjs = getAllFloorElements("#maindivTitleText")
-    const collsnElsMaster:collisionObjs = getAllFloorElements("h1, h2, h3, h4, h5, h6, img, p, button")
+    const collsnElsMaster: collisionObjs = getAllFloorElements("h1, h2, h3, h4, h5, h6, img, p, button")
 
-    function getAllFloorElements(searchElements: string){
+    function getAllFloorElements(searchElements: string) {
       const elements: NodeListOf<HTMLElement> = document.querySelectorAll(`${searchElements}`);
-      
-      const newObj:collisionObjs = {}
+
+      const newObj: collisionObjs = {}
       const name = `CollEl_`
-      elements.forEach((eachEl, index)=>{
+      elements.forEach((eachEl, index) => {
         index++
-        eachEl.setAttribute("data-platform-name", `${name+index}`)
-        newObj[name+index] = {
+        eachEl.setAttribute("data-platform-name", `${name + index}`)
+        newObj[name + index] = {
           floorElement: eachEl,
           floorLocaInfo: eachEl.getBoundingClientRect(),
         }
@@ -59,13 +59,11 @@ export default function MyPlayer(){
       return newObj
     }
 
-  
+
     MakePlayer(player1Info, "player1", "wasd")
-    MakePlayer({...player1Info}, "player2", "ijkl")
+    MakePlayer({ ...player1Info }, "player2", "ijkl")
 
-    function MakePlayer(playerInfo: PlayerStats, idName: string, upLeftBottRight: string){
-
-  
+    function MakePlayer(playerInfo: PlayerStats, idName: string, upLeftBottRight: string) {
 
       const newPlayEl = document.createElement("div")
       const playerCanvasDiv = document.querySelector("#playerCanvasDiv") as HTMLElement
@@ -79,39 +77,39 @@ export default function MyPlayer(){
       newPlayEl.style.left = `${playerInfo.left}px`
 
 
-      function makePlatformVisible(elementsObj: collisionObjs){
+      function makePlatformVisible(elementsObj: collisionObjs) {
         // console.clear()
-     
-          let allEl = document.querySelectorAll(`.${styles.platform}`) as NodeListOf<HTMLElement>
 
-          allEl.forEach((eachEl)=>{
-            eachEl.remove()
-          })
+        let allEl = document.querySelectorAll(`.${styles.platform}`) as NodeListOf<HTMLElement>
 
-          for (const key in elementsObj) {
+        allEl.forEach((eachEl) => {
+          eachEl.remove()
+        })
 
-            const newPlatform = document.createElement("div")
-      
-            newPlatform.setAttribute("class", styles.platform)
-      
-            newPlatform.style.width = `${elementsObj[key].floorLocaInfo.width}px`
-            newPlatform.style.height = `${5}px`
-            newPlatform.style.top = `${elementsObj[key].floorLocaInfo.top}px`
-            newPlatform.style.left = `${elementsObj[key].floorLocaInfo.left}px`
+        for (const key in elementsObj) {
 
-            // console.log(`top ${top}`, elementsObj[key].floorElement)
-      
-            playerCanvasDiv.append(newPlatform)
-          }          
+          const newPlatform = document.createElement("div")
 
-          // console.table(elementsObj)
+          newPlatform.setAttribute("class", styles.platform)
+
+          newPlatform.style.width = `${elementsObj[key].floorLocaInfo.width}px`
+          newPlatform.style.height = `${5}px`
+          newPlatform.style.top = `${elementsObj[key].floorLocaInfo.top}px`
+          newPlatform.style.left = `${elementsObj[key].floorLocaInfo.left}px`
+
+          // console.log(`top ${top}`, elementsObj[key].floorElement)
+
+          playerCanvasDiv.append(newPlatform)
+        }
+
+        // console.table(elementsObj)
 
       }
 
-      const plyrCollisObjs:collisionObjs = {}
+      const plyrCollisObjs: collisionObjs = {}
 
       runObserver()
-      function runObserver(){
+      function runObserver() {
         const observer = new IntersectionObserver((entries) => {
           entries.forEach((entry) => {
 
@@ -119,7 +117,7 @@ export default function MyPlayer(){
 
             if (entry.isIntersecting) {
 
-              plyrCollisObjs[dataPlatformNameVal] = {...collsnElsMaster[dataPlatformNameVal]}
+              plyrCollisObjs[dataPlatformNameVal] = { ...collsnElsMaster[dataPlatformNameVal] }
 
               // makePlatformVisible(plyrCollisObjs)
               // The element is visible
@@ -157,37 +155,37 @@ export default function MyPlayer(){
       let gravityOn = false
       let canStartControlsRepeater = false
 
-      function handleKeyDown(event: KeyboardEvent ){
+      function handleKeyDown(event: KeyboardEvent) {
         const key = event.key.toLowerCase()
-        
-        if (key === upLeftBottRight[0] || key === upLeftBottRight[1] || key === upLeftBottRight[2] || key === upLeftBottRight[3]){
-        
-            keys[key] = true;
 
-            if (!gravityOn){
-              gravityOn = true
-            }
-            
-            if (!canStartControlsRepeater){
-              canStartControlsRepeater = true
-              controlsRepeater("start")
-            }
+        if (key === upLeftBottRight[0] || key === upLeftBottRight[1] || key === upLeftBottRight[2] || key === upLeftBottRight[3]) {
+
+          keys[key] = true;
+
+          if (!gravityOn) {
+            gravityOn = true
+          }
+
+          if (!canStartControlsRepeater) {
+            canStartControlsRepeater = true
+            controlsRepeater("start")
+          }
 
 
 
-            //end gravity in movement on ground
-            //end controls repeater if no key pressed
+          //end gravity in movement on ground
+          //end controls repeater if no key pressed
 
-            
+
         }
 
       }
 
-      function handleKeyUp(event: KeyboardEvent){
+      function handleKeyUp(event: KeyboardEvent) {
 
         const key = event.key.toLowerCase()
 
-        if (key === upLeftBottRight[0] || key === upLeftBottRight[1] || key === upLeftBottRight[2] || key === upLeftBottRight[3]){
+        if (key === upLeftBottRight[0] || key === upLeftBottRight[1] || key === upLeftBottRight[2] || key === upLeftBottRight[3]) {
           keys[key] = false;
         }
 
@@ -196,33 +194,33 @@ export default function MyPlayer(){
       }
 
       let moveRepeaterInterval: NodeJS.Timer | undefined
-      function controlsRepeater(option: string){
+      function controlsRepeater(option: string) {
         //run the move function over and over
- 
-         if (option === "start"){
-          moveRepeaterInterval = setInterval(()=>{
-               console.log(`moving`)
-               movePlayer()
-           },0)
-         }else if (option === "stop"){
+
+        if (option === "start") {
+          moveRepeaterInterval = setInterval(() => {
+            console.log(`moving`)
+            movePlayer()
+          }, 0)
+        } else if (option === "stop") {
           console.log(`went to stop`, keys)
-           clearInterval(moveRepeaterInterval)
-         }
-        
+          clearInterval(moveRepeaterInterval)
+        }
+
 
 
       }
 
       // makePlayerLineVisible()
-      function makePlayerLineVisible(){
+      function makePlayerLineVisible() {
         const plysBttmLineView = document.createElement("div")
-      
+
         plysBttmLineView.setAttribute("class", styles.playerBottomLine)
         plysBttmLineView.setAttribute("id", `playerPlatform`)
-  
+
         plysBttmLineView.style.width = `${playerInfo.width}px`
         plysBttmLineView.style.height = `${5}px`
-  
+
         playerCanvasDiv.append(plysBttmLineView)
       }
 
@@ -230,138 +228,138 @@ export default function MyPlayer(){
 
       let playerOnAPlatform = false
 
-      function movePlayer(){
-       const futurePosition = {top: playerInfo.top, left: playerInfo.left}
-       const stepAmount = playerInfo.step
-     
+      function movePlayer() {
+        const futurePosition = { top: playerInfo.top, left: playerInfo.left }
+        const stepAmount = playerInfo.step
+
         if (keys[upLeftBottRight[0]]) {
-         // Move player up
-         futurePosition.top -= stepAmount * 2
-       } 
-       
-       if (keys[upLeftBottRight[2]] || gravityOn) {
-         // Move player down
-         futurePosition.top += stepAmount
-       } 
-       
-       if (keys[upLeftBottRight[1]]) {
-         // Move player left
-         futurePosition.left -= stepAmount
-         flipPlayer("left")
-         playerInfo.directionFacing = "left"
-       } 
-       
-       if (keys[upLeftBottRight[3]]) {
-         // Move player right
-         futurePosition.left += stepAmount
-         flipPlayer("right")
-         playerInfo.directionFacing = "right"
-       }
-
-    
-       let playerBottomLine = playerInfo.top + playerInfo.height
-
-       if (playerOnAPlatform){
-        playerBottomLine += 1
-        playerOnAPlatform = false
-       }
-     
-      //  plysBttmLineView.style.top = `${playerBottomLine}px`
-      //  plysBttmLineView.style.left = `${futurePosition.left}px`
-
-       const maxX = window.innerWidth - playerInfo.width
-       let closest = findClosestPlatform(playerBottomLine, futurePosition.left, playerInfo.width)
-    
-      //  if (closest > 1000){
-      //   closest = 1000
-      //  }
-    
-       const maxY = closest - playerInfo.height
-
-       if (futurePosition.left >= 0 && futurePosition.left <= maxX){
-         playerInfo.left = futurePosition.left
-       }else if (futurePosition.left < 0){
-         playerInfo.left = 0
-       }else if(futurePosition.left > maxX){
-         playerInfo.left = maxX
-       }
-       
-       if (futurePosition.top >= 0 && futurePosition.top <= maxY){
-         playerInfo.top = futurePosition.top
-       }else if (futurePosition.top < 0){
-         playerInfo.top = 0
-       }else if(futurePosition.top > maxY){
-        //hit bottom
-        gravityOn = false
-
-        const {height} = document.body.getBoundingClientRect()
-        if (maxY !== height) {
-          //player on a platform
-          playerOnAPlatform = true
-        }
-        
-      }
-      
-
-      if (keys[upLeftBottRight[0]] === false && keys[upLeftBottRight[1]] === false && keys[upLeftBottRight[2]] === false && keys[upLeftBottRight[3]] === false && gravityOn === false){
-        canStartControlsRepeater = false
-        controlsRepeater("stop")
-      }
-
-       drawPlayerToDom(newPlayEl, playerInfo.left, playerInfo.top)
-      } 
-
-
-
-      function findClosestPlatform(plyrBttmLine: number, playerX:number, playerWidth: number){
-       let minDistance = Infinity
-       let minElement : HTMLElement | undefined
-
-       //get all platforms in obj that player above
-       //only look at platforms player can land on x values
-       //choose a distance the closest one is at
-
-       //returned only floors the player was above
-
-       //get the closest one on x value
-       for (const key in plyrCollisObjs) {
-        const playerOverlappingFloor = playerX + playerInfo.width >= plyrCollisObjs[key].floorLocaInfo.left && playerX + playerWidth <= plyrCollisObjs[key].floorLocaInfo.right
-        const playerAboveFloor = plyrBttmLine <= plyrCollisObjs[key].floorLocaInfo.top
-
-        if (playerAboveFloor && plyrCollisObjs[key].floorLocaInfo.top < minDistance && playerOverlappingFloor){
-          minDistance = plyrCollisObjs[key].floorLocaInfo.top
-          minElement = plyrCollisObjs[key].floorElement
+          // Move player up
+          futurePosition.top -= stepAmount * 2
         }
 
-       }    
+        if (keys[upLeftBottRight[2]] || gravityOn) {
+          // Move player down
+          futurePosition.top += stepAmount
+        }
 
-       if (minDistance === Infinity){
-         const {height} = document.body.getBoundingClientRect()
-         minDistance = height
-       }
+        if (keys[upLeftBottRight[1]]) {
+          // Move player left
+          futurePosition.left -= stepAmount
+          flipPlayer("left")
+          playerInfo.directionFacing = "left"
+        }
+
+        if (keys[upLeftBottRight[3]]) {
+          // Move player right
+          futurePosition.left += stepAmount
+          flipPlayer("right")
+          playerInfo.directionFacing = "right"
+        }
 
 
-      //  console.log(minDistance)
-      //  console.log(minElement)
+        let playerBottomLine = playerInfo.top + playerInfo.height
 
-       return minDistance
+        if (playerOnAPlatform) {
+          playerBottomLine += 1
+          playerOnAPlatform = false
+        }
+
+        //  plysBttmLineView.style.top = `${playerBottomLine}px`
+        //  plysBttmLineView.style.left = `${futurePosition.left}px`
+
+        const maxX = window.innerWidth - playerInfo.width
+        let closest = findClosestPlatform(playerBottomLine, futurePosition.left, playerInfo.width)
+
+        //  if (closest > 1000){
+        //   closest = 1000
+        //  }
+
+        const maxY = closest - playerInfo.height
+
+        if (futurePosition.left >= 0 && futurePosition.left <= maxX) {
+          playerInfo.left = futurePosition.left
+        } else if (futurePosition.left < 0) {
+          playerInfo.left = 0
+        } else if (futurePosition.left > maxX) {
+          playerInfo.left = maxX
+        }
+
+        if (futurePosition.top >= 0 && futurePosition.top <= maxY) {
+          playerInfo.top = futurePosition.top
+        } else if (futurePosition.top < 0) {
+          playerInfo.top = 0
+        } else if (futurePosition.top > maxY) {
+          //hit bottom
+          gravityOn = false
+
+          const { height } = document.body.getBoundingClientRect()
+          if (maxY !== height) {
+            //player on a platform
+            playerOnAPlatform = true
+          }
+
+        }
+
+
+        if (keys[upLeftBottRight[0]] === false && keys[upLeftBottRight[1]] === false && keys[upLeftBottRight[2]] === false && keys[upLeftBottRight[3]] === false && gravityOn === false) {
+          canStartControlsRepeater = false
+          controlsRepeater("stop")
+        }
+
+        drawPlayerToDom(newPlayEl, playerInfo.left, playerInfo.top)
       }
-      
-      function drawPlayerToDom(playerElement: HTMLElement, updatedX:number, updatedY:number){
+
+
+
+      function findClosestPlatform(plyrBttmLine: number, playerX: number, playerWidth: number) {
+        let minDistance = Infinity
+        let minElement: HTMLElement | undefined
+
+        //get all platforms in obj that player above
+        //only look at platforms player can land on x values
+        //choose a distance the closest one is at
+
+        //returned only floors the player was above
+
+        //get the closest one on x value
+        for (const key in plyrCollisObjs) {
+          const playerOverlappingFloor = playerX + playerInfo.width >= plyrCollisObjs[key].floorLocaInfo.left && playerX + playerWidth <= plyrCollisObjs[key].floorLocaInfo.right
+          const playerAboveFloor = plyrBttmLine <= plyrCollisObjs[key].floorLocaInfo.top
+
+          if (playerAboveFloor && plyrCollisObjs[key].floorLocaInfo.top < minDistance && playerOverlappingFloor) {
+            minDistance = plyrCollisObjs[key].floorLocaInfo.top
+            minElement = plyrCollisObjs[key].floorElement
+          }
+
+        }
+
+        if (minDistance === Infinity) {
+          const { height } = document.body.getBoundingClientRect()
+          minDistance = height
+        }
+
+
+        //  console.log(minDistance)
+        //  console.log(minElement)
+
+        return minDistance
+      }
+
+      function drawPlayerToDom(playerElement: HTMLElement, updatedX: number, updatedY: number) {
         playerElement.style.top = `${updatedY}px`
         playerElement.style.left = `${updatedX}px`
       }
 
-      function flipPlayer(option: string){
-      
-        if (playerInfo.directionFacing !== option){
-  
-          if(option === "left"){
+      function flipPlayer(option: string) {
+
+        if (playerInfo.directionFacing !== option) {
+
+          if (option === "left") {
             newPlayEl.style.transform = "rotateY(0deg)"
-          }else{
+          } else {
             newPlayEl.style.transform = "rotateY(180deg)"
           }
-  
+
         }
       }
 
@@ -371,7 +369,7 @@ export default function MyPlayer(){
 
 
   return (
-      <div id="playerCanvasDiv" className={styles.playerCanvasDiv}>
-      </div>
+    <div id="playerCanvasDiv" className={styles.playerCanvasDiv}>
+    </div>
   )
 }
