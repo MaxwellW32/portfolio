@@ -34,7 +34,9 @@ export default function Page({ params }: { params: { homepageNum: string } }) {
 
     return (
         <div style={{ gridArea: "b", display: "grid", gridTemplateRows: "100%", position: "relative" }}>
-            {homepages[currentIndex]}
+            <div key={1}>
+                {homepages[currentIndex]}
+            </div>
 
             <div style={{ position: "fixed", bottom: 0, left: "50%", translate: "-50% 0", padding: "1rem", backgroundColor: "#000", display: "grid", justifyItems: "center", opacity: showingMenu ? 1 : 0.4, zIndex: "2" }}>
                 <svg style={{ width: "1rem", aspectRatio: "1/1", fill: "#fff", rotate: showingMenu ? "0deg" : "-180deg", transition: "rotate 1s, scale 600ms" }} onClick={() => {
