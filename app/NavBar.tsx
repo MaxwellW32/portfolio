@@ -1,15 +1,17 @@
 "use client"
 
-import React, { useState, useEffect, useLayoutEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect, useRef } from "react";
 import './globals.css'
 import Link from 'next/link'
 import styles from './page.module.css'
+import { useAtom } from "jotai";
+import { navRefGlobal } from "../Components/Useful/globalState";
 
-
-export default function Navbar() {  
+export default function Navbar() {
   const [themeLight, setThemeLight] = useState(false);
-  const [mobileNavHidden, setMobileNavHidden] = useState(true);
+  const [showMobileNav, showMobileNavSet] = useState(false);
   const [rotateTheme, rotateThemeSet] = useState(0)
+
 
   function changeTheme() {
     setThemeLight((prev) => {
@@ -37,15 +39,16 @@ export default function Navbar() {
     // close navbar on mobile all links clicked
     document.querySelectorAll(".detectClickTMobile").forEach((e) =>
       e.addEventListener("click", () => {
-        setMobileNavHidden(true);
+        showMobileNavSet(true);
       })
     );
   }, []);
 
-  let mainColor:string;
-  let secondColor:string;
-  let whiteSwitch:string;
-  let blackSwitch:string;
+
+  let mainColor: string;
+  let secondColor: string;
+  let whiteSwitch: string;
+  let blackSwitch: string;
 
   if (themeLight) {
     //make light
@@ -61,7 +64,7 @@ export default function Navbar() {
     blackSwitch = "255, 255, 255";
   }
 
-  const themeColors:{
+  const themeColors: {
     [key: string]: string;
   } = {
     "--mainColor": mainColor,
@@ -69,7 +72,7 @@ export default function Navbar() {
     "--whiteSwitch": whiteSwitch,
     "--blackSwitch": blackSwitch,
   };
-
+  //inter observer
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -82,8 +85,8 @@ export default function Navbar() {
     document.querySelectorAll(".hidden").forEach((el) => observer.observe(el));
   }, []);
 
+  //set the body styles
   useEffect(() => {
-    //set the body styles
     const htmlStyle = document.documentElement.style;
 
     Object.keys(themeColors).forEach((key) => {
@@ -97,21 +100,13 @@ export default function Navbar() {
     };
   }, [themeLight]);
 
-  return (
-    <nav
-        id="mainNav"
-        className={styles.mainNav}
-        style={{
-          "--changeNavSizeMobile": mobileNavHidden ? "0" : "100dvh",
-        } as React.CSSProperties}
-      >
+  const [navRef, navRefSet] = useAtom(navRefGlobal)
 
+  return (
+    <>
+      <nav id="mainNav" ref={navRefSet} className={styles.mainNav} style={{ "--customMobileNavHeight": showMobileNav ? "100svh" : "auto" } as React.CSSProperties}>
         <Link
-          onClick={() => {
-            setMobileNavHidden(true);
-          }}
-          id="navHomeBttn"
-          className={styles.navHomeBttn}
+          className={styles.homeButton}
           href="/"
         >
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
@@ -119,197 +114,167 @@ export default function Navbar() {
           </svg>
         </Link>
 
-        <div className={styles.NavBarMiddleCont}>
+        <div>
           <svg
+            className={styles.mobileMenuIcon}
             onClick={() => {
-              setMobileNavHidden((prev) => !prev);
+              showMobileNavSet((prev) => !prev);
             }}
             id="NavbarIcon"
-            className={styles.NavbarIcon}
             xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 448 512"
+            viewBox="0 0 512 512"
           >
             <path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z" />
           </svg>
-          <div
-            style={{ "--MobileNavTrigger": mobileNavHidden ? "none" : "grid" } as React.CSSProperties}
-            id="MNavULCont"
-            className={styles.MNavULCont}
-          >
-            <ul>
-              <p>About Me</p>
-              <div>
-                <li>
-                  <Link
-                    className="detectClickTMobile"
-                    href="/#whatIOffer"
-                  >
+
+          <ul className={styles.menu} style={{ "--customMobileDisplay": showMobileNav ? "flex" : "none" } as React.CSSProperties}>
+            <li className={styles.menuItem}>About Me
+              <ul className={styles.subMenu}>
+                <li className={styles.subMenuItem}>
+                  <Link href="/#whatIOffer" >
                     What I offer
                   </Link>
                 </li>
-                <li>
-                  <Link
-                    className="detectClickTMobile"
-                    href="/#ServiceStart"
-                  >
+
+                <li className={styles.subMenuItem}>
+                  <Link href="/#ServiceStart">
                     Our Service
                   </Link>
                 </li>
 
-                <li>
-                  <Link
-                    className="detectClickTMobile"
-                    href="/#ContactUsStart"
-                  >
+                <li className={styles.subMenuItem}>
+                  <Link href="/#ContactUsStart">
                     Contact Us
                   </Link>
                 </li>
-                <li>
-                  <Link
-                    className="detectClickTMobile"
-                    href="/#testimonialStart"
-                  >
-                    Testimonials
-                  </Link>
-                </li>
-              </div>
-            </ul>
+              </ul>
+            </li>
 
-            <ul>
-              <p>Projects</p>
-              <div>
-                <li>
-                  <Link
-                    className="detectClickTMobile"
-                    href="/#projectListStart"
-                  >
+            <li className={styles.menuItem}>Projects
+              <ul className={styles.subMenu}>
+                <li className={styles.subMenuItem}>
+                  <Link href="/#projectListStart">
                     All Projects
                   </Link>
                 </li>
-                <li>
-                  <Link
-                    className="detectClickTMobile"
-                    href="/videoGenerator"
-                  >
+
+                <li className={styles.subMenuItem}>
+                  <Link href="/videoGenerator">
                     Video Generator
                   </Link>
                 </li>
-                <li>
-                  <Link
-                    className="detectClickTMobile"
-                    href="/dictionary"
-                  >
+
+                <li className={styles.subMenuItem}>
+                  <Link href="/dictionary">
                     Dictionary
                   </Link>
                 </li>
-                <li>
-                  <Link
-                    className="detectClickTMobile"
-                    href="/artDraw"
-                  >
+
+                <li className={styles.subMenuItem}>
+                  <Link href="/artDraw">
                     Art canvas
                   </Link>
                 </li>
-                <li>
-                  <Link
-                    className="detectClickTMobile"
-                    href="/perspectivePlayground"
-                  >
+
+                <li className={styles.subMenuItem}>
+                  <Link href="/perspectivePlayground">
                     Perspective Playground
                   </Link>
                 </li>
-                <li>
-                  <Link
-                    className="detectClickTMobile"
-                    href="/toDo"
-                  >
+
+                <li className={styles.subMenuItem}>
+                  <Link href="/toDo">
                     To Do List
                   </Link>
                 </li>
 
-                <li>
-                  <Link
-                    className="detectClickTMobile"
-                    href="/calculator"
-                  >
+                <li className={styles.subMenuItem}>
+                  <Link href="/calculator">
                     Calculator
                   </Link>
                 </li>
 
-                <li>
-                  <Link
-                    className="detectClickTMobile"
-                    href="/techHaven"
-                  >
+                <li className={styles.subMenuItem}>
+                  <Link href="/techHaven">
                     Eccomerce
                   </Link>
                 </li>
-              </div>
-            </ul>
-            <ul>
-              <p>Websites</p>
 
-              <div>
-                <li>
-                  <Link
-                    className="detectClickTMobile"
-                    href="/#projectListStart"
-                  >
-                    All websites
+                <li className={styles.subMenuItem}>
+                  <Link href="https://gomaxdb.vercel.app" target="_blank">
+                    Comminuty Post
                   </Link>
                 </li>
-              </div>
-            </ul>
-            
-            <ul>
-              <p>What I&apos;ve Learned</p>
+              </ul>
+            </li>
 
-              <div>
-                <li>
-                  <Link className="detectClickTMobile" href="/learned#htmlStart">
+            <li className={styles.menuItem}>Websites
+              <ul className={styles.subMenu}>
+                <li className={styles.subMenuItem}>
+                  <Link href="/homepages/0">
+                    Home Pages
+                  </Link>
+                  <ul className={styles.subSubMenu}>
+                    <li className={styles.subSubMenuItem}>web home 1</li>
+                    <li className={styles.subSubMenuItem}>web home 2</li>
+                    <li className={styles.subSubMenuItem}>web home 3</li>
+                  </ul>
+                </li>
+
+                <li className={styles.subMenuItem}>
+                  <Link href="https://mystorytime.vercel.app" target="_blank">
+                    Story Time Reader
+                  </Link>
+                </li>
+              </ul>
+            </li>
+
+            <li className={styles.menuItem}>Learned
+              <ul className={styles.subMenu}>
+                <li className={styles.subMenuItem}>
+                  <Link href="/learned#htmlStart">
                     Html
                   </Link>
                 </li>
-                <li>
-                  <Link className="detectClickTMobile" href="/learned#cssStart">
+
+                <li className={styles.subMenuItem}>
+                  <Link href="/learned#cssStart">
                     Css
                   </Link>
                 </li>
-                <li>
-                  <Link
-                    className="detectClickTMobile"
-                    href="/learned#javascriptStart"
-                  >
+
+                <li className={styles.subMenuItem}>
+                  <Link href="/learned#javascriptStart">
                     Javascript
                   </Link>
                 </li>
-                <li>
-                  <Link className="detectClickTMobile" href="/learned#reactStart">
+
+                <li className={styles.subMenuItem}>
+                  <Link href="/learned#reactStart">
                     React
                   </Link>
                 </li>
-                <li>
-                  <Link
-                    className="detectClickTMobile"
-                    href="/learned#DjangoStart"
-                  >
+
+                <li className={styles.subMenuItem}>
+                  <Link href="/learned#DjangoStart">
                     Django
                   </Link>
                 </li>
-              </div>
-            </ul>
-          </div>
+              </ul>
+            </li>
+          </ul>
         </div>
 
         <div
-          onClick={() => {rotateThemeSet(prev => prev + 360)}}
-          id="navThemeCont"
-          className={styles.navThemeCont}
-          style={{rotate: `${rotateTheme}deg`}}
+          onClick={() => {
+            rotateThemeSet(prev => prev + 360)
+            changeTheme()
+          }}
+          className={styles.themeSwitchCont}
+          style={{ rotate: `${rotateTheme}deg` }}
         >
           {themeLight ? (
             <svg
-              onClick={changeTheme}
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 512 512"
             >
@@ -317,15 +282,14 @@ export default function Navbar() {
             </svg>
           ) : (
             <svg
-              onClick={changeTheme}
               xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 384 512"
+              viewBox="0 0 512 512"
             >
               <path d="M223.5 32C100 32 0 132.3 0 256S100 480 223.5 480c60.6 0 115.5-24.2 155.8-63.4c5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-9.8 1.7-19.8 2.6-30.1 2.6c-96.9 0-175.5-78.8-175.5-176c0-65.8 36-123.1 89.3-153.3c6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-6.3-.5-12.6-.8-19-.8z" />
             </svg>
           )}
         </div>
-    
-    </nav>
+      </nav>
+    </>
   )
 }

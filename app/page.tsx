@@ -10,10 +10,10 @@ import { useEffect, useState } from 'react';
 
 
 function Socials(
-  { name, heading, children } 
-  : 
-  { name: string; heading: string; children: React.ReactNode}
-  ) {
+  { name, heading, children }
+    :
+    { name: string; heading: string; children: React.ReactNode }
+) {
 
   return (
     <Link href="/portfolio">
@@ -192,8 +192,8 @@ function Home() {
 
   return (
     <div id="homeContDiv">
-      <MyPlayer/>
-      
+      {/* <MyPlayer /> */}
+
       <div className={styles.hmBackgroundImgCont}>
         <TitleText />
       </div>
@@ -252,12 +252,13 @@ function Home() {
             </div>
           </article>
         </section>
+
         <section
           style={{
             "--customBackground":
               "url(https://images.pexels.com/photos/4079948/pexels-photo-4079948.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)",
-          }as React.CSSProperties}
-          className= {`${styles.homeSection} ${styles.mottoSec}`}>
+          } as React.CSSProperties}
+          className={`${styles.homeSection} ${styles.mottoSec}`}>
           <h1 className={styles.BigHeader}>MY PHILOSOPHY</h1>
           <p>
             I believe that the key to success is{" "}
@@ -282,12 +283,13 @@ function Home() {
           </p>
           <article className={styles.homeSkillsCont}>{skillsGroupMap}</article>
         </section>
+
         <section
           style={{
             "--customBackground":
               "url(https://images.pexels.com/photos/2701434/pexels-photo-2701434.jpeg)",
-          }as React.CSSProperties}
-          className= {`${styles.homeSection} ${styles.funfactsSec}`}> 
+          } as React.CSSProperties}
+          className={`${styles.homeSection} ${styles.funfactsSec}`}>
           <h1 className={styles.BigHeader}>fun facts</h1>
           <p>
             The future of web development is bright, exciting and full of
@@ -340,22 +342,25 @@ function Home() {
             </div>
           </article>
         </section>
-        <section className= {`${styles.homeSection} ${styles.dropLine}`}>
+
+        <section className={`${styles.homeSection} ${styles.dropLine}`}>
           <div className={styles.borderAnimation}>
             <h1 className={styles.BigHeader}>
               <Link href="#ContactUsStart">Drop me a Line</Link>
             </h1>
           </div>
         </section>
+
         <section
           style={{
             "--customBackground":
               "url(https://images.pexels.com/photos/389818/pexels-photo-389818.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)",
-          }as React.CSSProperties}
+          } as React.CSSProperties}
           id="ServiceStart"
           className={`${styles.homeSection} ${styles.serviceSec}`}
         >
           <h1 className={styles.BigHeader}>My Services</h1>
+
           <p style={{ textAlign: "center" }}>
             My quality standards apply also in terms of service, technical
             expertise and advice. I are happy to assist you with know-how and
@@ -367,7 +372,9 @@ function Home() {
                 className={styles.servicesContImg}
                 src="https://images.pexels.com/photos/2977565/pexels-photo-2977565.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
               />
+
               <strong>Consulting</strong>
+
               <p>
                 I also go beyond just offering advice. I work with clients to
                 identify opportunities for growth and improvement. I can provide
@@ -396,7 +403,9 @@ function Home() {
                 className={styles.servicesContImg}
                 src="https://images.pexels.com/photos/45842/clasped-hands-comfort-hands-people-45842.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
               />
+
               <strong>Support</strong>
+
               <p>
                 My commitment goes beyond project delivery. I offer ongoing
                 support and maintenance services to ensure that our clients&apos;
@@ -411,7 +420,9 @@ function Home() {
                 className={styles.servicesContImg}
                 src="https://images.pexels.com/photos/13801629/pexels-photo-13801629.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
               />
+
               <strong>Satisfaction Gurantee</strong>
+
               <p>
                 I am confident in my ability to deliver exceptional results.
                 That&apos;s why I offer a satisfaction guarantee to everyone I work
@@ -423,6 +434,7 @@ function Home() {
             </div>
           </article>
         </section>
+
         <section id="projectListStart" className={`${styles.homeSection} ${styles.workSec}`}>
           <h1 className={styles.BigHeader}>Projects</h1>
           <p>
@@ -436,12 +448,12 @@ function Home() {
           style={{
             "--customBackground":
               "url(https://images.pexels.com/photos/1714203/pexels-photo-1714203.jpeg)",
-          }as React.CSSProperties}
+          } as React.CSSProperties}
           id="ContactUsStart"
           className={`${styles.homeSection} ${styles.contactSec}`}
         >
-          
-          <ContactForm/>
+
+          <ContactForm />
 
           <article className={styles.contactSocialCont}>
             <Socials name="Twitter" heading="Check me out">
