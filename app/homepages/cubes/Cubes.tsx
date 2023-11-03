@@ -232,7 +232,8 @@ function Graph({ columnNames, positionValuesSeen }: { columnNames: string[], pos
                         <div key={eachYPositionIndex} style={{ height: `${(eachYPosition / ceilingNum) * animateHeightOnBarNum}%`, position: "relative", display: "grid", gridAutoRows: "1fr 7fr", justifyItems: "center", gridTemplateColumns: "1fr", width: "20%", transition: `height 2s` }}>
                             <div style={{ display: "grid", justifyItems: "center", gap: "1rem" }}>
                                 <div className={styles.points} style={{ width: ".2rem", aspectRatio: "1/1", borderRadius: "50%", backgroundColor: "#f96e23", "--pointTimeOffset": `${eachYPositionIndex * 100}ms` } as React.CSSProperties}></div>
-                                <div style={{ height: "1.5rem", width: "1px", backgroundColor: '#fff' }}></div>
+
+                                <div style={{ height: eachYPosition > 10 ? "1.5rem" : "0", width: "1px", backgroundColor: '#fff' }}></div>
                             </div>
 
                             <div style={{ clipPath: "polygon(40% 0, 60% 0, 100% 100%, 0% 100%)", backgroundColor: "#f96e23", width: "100%" }}></div>

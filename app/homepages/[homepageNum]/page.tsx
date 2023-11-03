@@ -6,7 +6,7 @@ import { navRefGlobal } from '../../../Components/Useful/globalState'
 import { useAtom } from 'jotai'
 import Cubes from '../cubes/Cubes'
 
-export default function page({ params }: { params: { homepageNum: string } }) {
+export default function Page({ params }: { params: { homepageNum: string } }) {
     const [homepages, homepagesSet] = useState<JSX.Element[]>([<Mountain />, <Cubes />])
     const [currentIndex, currentIndexSet] = useState(() => {
         let seenNum = parseInt(params.homepageNum)
