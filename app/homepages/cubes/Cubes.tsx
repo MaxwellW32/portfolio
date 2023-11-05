@@ -324,7 +324,7 @@ function Bubble({ offset }: { offset?: { x: number, y: number } }) {
         return { x: getRandomNumber(100, 0), y: getRandomNumber(200, 0) }
     }, [])
     const [currentPos, currentPosSet] = useState({ ...initialPos })
-    const [animationTime, animationTimeSet] = useState(getRandomNumber(2000, 4000))
+    const [animationTime, animationTimeSet] = useState(getRandomNumber(5000, 4000))
     const [bubbleScale, bubbleScaleSet] = useState(getRandomNumber(10, 3))
     const wormHeight = useMemo(() => getRandomNumber(100, 20), [])
 
@@ -344,7 +344,7 @@ function Bubble({ offset }: { offset?: { x: number, y: number } }) {
     function start() {
         setTimeout(() => {
             canShowSet(true)
-        }, animationTime)
+        }, animationTime / 2)
 
         movingInterval.current = setInterval(() => {
             move()
