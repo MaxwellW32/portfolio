@@ -8,7 +8,7 @@ import Cubes from '../cubes/Cubes'
 import Link from 'next/link'
 
 export default function Page({ params }: { params: { homepageNum: string } }) {
-    const [homepages, homepagesSet] = useState<JSX.Element[]>([<Mountain />, <Cubes />])
+    const [homepages, homepagesSet] = useState<JSX.Element[]>([<Mountain key={1} />, <Cubes key={2} />])
     const [currentIndex, currentIndexSet] = useState(() => {
         let seenNum = parseInt(params.homepageNum)
 
