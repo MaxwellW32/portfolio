@@ -344,7 +344,7 @@ function Bubble({ offset }: { offset?: { x: number, y: number } }) {
     function start() {
         setTimeout(() => {
             canShowSet(true)
-        }, animationTime / 2)
+        }, animationTime / 3)
 
         movingInterval.current = setInterval(() => {
             move()
@@ -360,14 +360,14 @@ function Bubble({ offset }: { offset?: { x: number, y: number } }) {
 
             if (Math.random() * 1 < 0.95) {
 
-                let newOffsetX = prevPos.x + getRandomNumber(50, 10)
-                let newOffsetY = prevPos.y + getRandomNumber(50, 10)
+                let newOffsetX = prevPos.x + getRandomNumber(10, 2)
+                let newOffsetY = prevPos.y + getRandomNumber(10, 2)
 
                 if (newOffsetX > window.innerWidth) {
-                    newOffsetX = initialPos.x + getRandomNumber(100, 10)
+                    newOffsetX = initialPos.x + getRandomNumber(50, 10)
                 }
                 if (newOffsetY > window.innerHeight) {
-                    newOffsetY = initialPos.y + getRandomNumber(100, 10)
+                    newOffsetY = initialPos.y + getRandomNumber(50, 10)
                 }
 
                 return { x: newOffsetX, y: newOffsetY }
