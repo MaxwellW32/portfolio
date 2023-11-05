@@ -18,32 +18,16 @@ const colors = {
 }
 
 export default function Cubes() {
-    const boardInfo = useRef<boardInfoType | undefined>({
-        maxHeight: 0,
-        maxWidth: 0,
-        mouseX: undefined,
-        mouseY: undefined,
-    })
-    const wormParent = useRef<HTMLDivElement>(null)
+
 
     return (
-        <div ref={wormParent} className={`${styles.cubesMainDiv} ${roboto_mono.variable}`} style={{ backgroundColor: "#1f212e", overflow: "hidden", position: "relative", zIndex: "1" }}
-            onMouseMove={(e) => {
-                boardInfo.current!.mouseX = e.clientX - wormParent.current!.offsetLeft
-                boardInfo.current!.mouseY = (e.pageY - wormParent.current!.offsetTop)
-            }}
-
-            onMouseLeave={() => {
-                boardInfo.current!.mouseX = undefined
-                boardInfo.current!.mouseY = undefined
-                boardInfo.current!.maxWidth = wormParent.current!.offsetWidth
-                boardInfo.current!.maxHeight = wormParent.current!.offsetHeight
-            }}>
-
+        <div className={`${styles.cubesMainDiv} ${roboto_mono.variable}`} style={{ backgroundColor: "#1f212e", overflow: "hidden", position: "relative", zIndex: "1" }}>
             <section style={{ overflow: "hidden" }}>
                 <div style={{ margin: "1rem", display: "grid" }}>
                     <h1>Driving Success Through Data</h1>
+
                     <p className={styles.shortText}>Visualize Your Progress with Powerful Analytics</p>
+
                     <div style={{ paddingTop: "1rem" }}>
                         <button style={{ backgroundColor: "#223f48" }}>Get Started</button>
                         <button style={{ backgroundColor: "#546b6e" }}>Learn More</button>
@@ -54,8 +38,8 @@ export default function Cubes() {
                 <Graph columnNames={weekDayColumnNames} positionValuesSeen={eachPosValue} />
             </section>
 
-            <section style={{ display: "flex", flexWrap: "wrap", gap: "1rem", gridAutoRows: "auto", paddingBottom: "5rem" }}>
-                <div style={{ flex: 1 }} className={styles.threeContainer}>
+            <section style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "1rem", paddingBottom: "5rem" }}>
+                <div style={{ flex: "1 0 150px" }} className={styles.threeContainer}>
                     <div >
                         <h3>Real-time Insights</h3>
 
@@ -99,7 +83,7 @@ export default function Cubes() {
                     </div>
                 </div>
 
-                <div style={{ flex: .7 }} className={styles.threeContainer} >
+                <div style={{ flex: ".7 0 150px" }} className={styles.threeContainer} >
                     <div style={{ display: "grid" }}>
                         <svg style={{ justifySelf: "flex-end", fill: `${colors.secondaryColor}` }} xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><path d="M502.285 159.704l-234-156c-7.987-4.915-16.511-4.96-24.571 0l-234 156C3.714 163.703 0 170.847 0 177.989v155.999c0 7.143 3.714 14.286 9.715 18.286l234 156.022c7.987 4.915 16.511 4.96 24.571 0l234-156.022c6-3.999 9.715-11.143 9.715-18.286V177.989c-.001-7.142-3.715-14.286-9.716-18.285zM278 63.131l172.286 114.858-76.857 51.429L278 165.703V63.131zm-44 0v102.572l-95.429 63.715-76.857-51.429L234 63.131zM44 219.132l55.143 36.857L44 292.846v-73.714zm190 229.715L61.714 333.989l76.857-51.429L234 346.275v102.572zm22-140.858l-77.715-52 77.715-52 77.715 52-77.715 52zm22 140.858V346.275l95.429-63.715 76.857 51.429L278 448.847zm190-156.001l-55.143-36.857L468 219.132v73.714z" /></svg>
 
@@ -123,9 +107,9 @@ export default function Cubes() {
                         <p className='makeBold'>Integrity</p>
                         <p>Unwavering transparency is our #1</p>
                     </div>
-                </div>
+                </div >
 
-                <div style={{ flex: 1 }} className={styles.threeContainer} >
+                <div style={{ flex: "1 0 150px" }} className={styles.threeContainer} >
                     <div style={{ display: "grid", gridTemplateColumns: "1fr auto" }}>
                         <h3>Our History</h3>
 
@@ -160,20 +144,24 @@ export default function Cubes() {
                         </div>
                     </div>
                 </div>
-            </section>
+            </section >
 
-            {boardInfo.current && new Array(10).fill(0).map((eachItem, eachItemIndex) => {
-                return <Worm key={eachItemIndex} boardInfo={boardInfo.current} />
-            })}
+            {
+                new Array(10).fill(0).map((eachItem, eachItemIndex) => {
+                    return <Worm key={eachItemIndex} />
+                })
+            }
 
-            {new Array(15).fill(0).map((eachItem, eachItemIndex) => {
-                let seenOffset = undefined
-                if (eachItemIndex > 5) {
-                    seenOffset = { x: getRandomNumber(400 + (eachItemIndex * 4), eachItemIndex), y: getRandomNumber(200 + (eachItemIndex * 4), eachItemIndex) }
-                }
-                return <Bubble offset={seenOffset} key={eachItemIndex} />
-            })}
-        </div>
+            {
+                new Array(15).fill(0).map((eachItem, eachItemIndex) => {
+                    let seenOffset = undefined
+                    if (eachItemIndex > 5) {
+                        seenOffset = { x: getRandomNumber(400 + (eachItemIndex * 4), eachItemIndex), y: getRandomNumber(200 + (eachItemIndex * 4), eachItemIndex) }
+                    }
+                    return <Bubble offset={seenOffset} key={eachItemIndex} />
+                })
+            }
+        </div >
     )
 }
 
@@ -244,23 +232,24 @@ function Graph({ columnNames, positionValuesSeen }: { columnNames: string[], pos
 
                 {/* waves */}
                 {positionValues.map((eachYPosition, eachYPositionIndex) => {
+                    //const eachPosValue = [12, 20, 35, 50, 45, 40, 30, 23, 23, 45, 67, 80, 88, 75, 60, 50, 40] //y axis - x axis layout
 
                     let arrToPolygonStr = ""
-                    const offset = 100 / positionValues.length //eahc percent needed to makeup 100, like 10%
+                    const offset = 100 / positionValues.length //each percent needed to makeup 100, e.g 10%
+
                     if (eachYPositionIndex === 0 || eachYPositionIndex === Math.ceil(positionValues.length / 2)) {
                         const limiter = Math.ceil(positionValues.length / 2)
 
                         positionValues.slice(eachYPositionIndex, eachYPositionIndex + limiter).forEach((eachYPositionSmaller, eachYPositionIndexSmaller) => {
                             if (eachYPositionIndexSmaller + 1 > limiter) {
                                 eachYPositionSmaller = 0
-                                eachYPositionIndexSmaller = limiter + 1 //deliberate so we overshoot
+                                eachYPositionIndexSmaller = limiter + 1 //deliberate so we overshoot / styling
                             }
 
                             arrToPolygonStr += `${((eachYPositionIndexSmaller + 1) * offset) - offset / 2}% ${100 - eachYPositionSmaller + waveDivOffset}%,`
                         })
 
                         //end the clip mask
-
                         arrToPolygonStr += `${(limiter + 1) * offset}% 100%,`
                     }
 
@@ -283,13 +272,11 @@ function Graph({ columnNames, positionValuesSeen }: { columnNames: string[], pos
     )
 }
 
-function Worm({ boardInfo }: { boardInfo: boardInfoType | undefined }) {
-    const wormRef = useRef<HTMLDivElement>(null)
+function Worm() {
     const [canShow, canShowSet] = useState(false)
     const [currentPos, currentPosSet] = useState({ x: 0, y: 0 })
     const [animationTime, animationTimeSet] = useState(getRandomNumber(2000, 1000))
     const wormHeight = 4
-    const seenCloseToMouse = useRef(false)
 
     function getRandomNumber(range: number, lowestVal: number = 0) {
         return Math.floor(Math.random() * range) + lowestVal
@@ -306,6 +293,7 @@ function Worm({ boardInfo }: { boardInfo: boardInfoType | undefined }) {
     }, [])
 
     const movingInterval = useRef<undefined | NodeJS.Timer>()
+
     function start() {
         setTimeout(() => {
             canShowSet(true)
@@ -317,51 +305,14 @@ function Worm({ boardInfo }: { boardInfo: boardInfoType | undefined }) {
     }
 
     function move() {
-        if (!boardInfo) return
-        const maxHeight = boardInfo!.maxHeight
-        const maxWidth = boardInfo!.maxWidth
-
-        const limit = 50
-        const mouseX = boardInfo!.mouseX
-        const mouseY = boardInfo!.mouseY
-
-        if (boardInfo.mouseX === undefined || boardInfo.mouseY === undefined) {
-            seenCloseToMouse.current = false
-            wormRef.current!.classList.remove(styles.highlightedWorm)
-        }
-
-        let randX = 0
-        let randY = 0
-
-        if (seenCloseToMouse.current) {
-            let smallLimit = 30
-            let changeMulti = 1
-
-            if (Math.random() * 1 > .5) changeMulti *= -1
-            randX = mouseX! + (Math.floor(Math.random() * smallLimit) * changeMulti)
-            randY = mouseY! + (Math.floor(Math.random() * smallLimit) * changeMulti)
-
-        } else {
-            randX = Math.floor(Math.random() * maxWidth!)
-            randY = Math.floor(Math.random() * maxHeight!)
-        }
-
-        if (mouseX !== undefined && mouseY !== undefined && (randX > mouseX - limit && randX < mouseX + limit)) {
-            if (randY > mouseY - limit && randY < mouseY + limit) {
-                seenCloseToMouse.current = true
-                setTimeout(() => {
-                    wormRef.current!.classList.add(styles.highlightedWorm)
-                }, animationTime / 3)
-            }
-        } else {
-            wormRef.current!.classList.remove(styles.highlightedWorm)
-        }
+        let randX = Math.floor(Math.random() * window.innerWidth)
+        let randY = Math.floor(Math.random() * window.innerHeight)
 
         currentPosSet({ x: randX, y: randY })
     }
 
     return (
-        <div ref={wormRef} style={{ backgroundColor: "#e62333", borderRadius: "50%", position: "absolute", width: `${wormHeight}px`, aspectRatio: "1/1", top: 0, left: 0, translate: `${currentPos.x}px ${currentPos.y}px`, rotate: `${0}deg`, opacity: canShow ? 1 : 0, transition: `translate ${animationTime}ms, opacity ${animationTime}ms`, pointerEvents: "none", userSelect: "none", zIndex: "-1" }}></div>
+        <div style={{ backgroundColor: "#e62333", borderRadius: "50%", position: "absolute", width: `${wormHeight}px`, aspectRatio: "1/1", top: 0, left: 0, translate: `${currentPos.x}px ${currentPos.y}px`, rotate: `${0}deg`, opacity: canShow ? 1 : 0, transition: `translate ${animationTime}ms, opacity ${animationTime}ms`, pointerEvents: "none", userSelect: "none", zIndex: "-1" }}></div>
     )
 
 }
@@ -406,8 +357,24 @@ function Bubble({ offset }: { offset?: { x: number, y: number } }) {
 
     function move() {
         currentPosSet(prevPos => {
-            const newPos = { x: initialPos.x + getRandomNumber(50, 10), y: initialPos.y + getRandomNumber(50, 10) }
-            return newPos
+
+            if (Math.random() * 1 < 0.95) {
+
+                let newOffsetX = prevPos.x + getRandomNumber(50, 10)
+                let newOffsetY = prevPos.y + getRandomNumber(50, 10)
+
+                if (newOffsetX > window.innerWidth) {
+                    newOffsetX = initialPos.x + getRandomNumber(100, 10)
+                }
+                if (newOffsetY > window.innerHeight) {
+                    newOffsetY = initialPos.y + getRandomNumber(100, 10)
+                }
+
+                return { x: newOffsetX, y: newOffsetY }
+
+            } else {
+                return { x: initialPos.x + getRandomNumber(100, 10), y: initialPos.y + getRandomNumber(100, 10) }
+            }
         })
     }
 
