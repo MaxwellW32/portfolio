@@ -5,10 +5,11 @@ import Mountain from '../mountain/Mountain'
 import { navRefGlobal } from '../../../Components/Useful/globalState'
 import { useAtom } from 'jotai'
 import Cubes from '../cubes/Cubes'
-import Router, { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 
 export default function Page({ params }: { params: { homepageNum: string } }) {
     const router = useRouter()
+    // <Draw key={3} />
     const [homepages, homepagesSet] = useState<JSX.Element[]>([<Mountain key={1} />, <Cubes key={2} />])
     const [currentIndex, currentIndexSet] = useState(() => {
         let seenNum = parseInt(params.homepageNum)
@@ -40,9 +41,7 @@ export default function Page({ params }: { params: { homepageNum: string } }) {
 
     return (
         <div style={{ gridArea: "b", display: "grid", gridTemplateRows: "100%", position: "relative" }}>
-            <div key={1}>
-                {homepages[currentIndex]}
-            </div>
+            {homepages[currentIndex]}
 
             <div style={{ position: "fixed", bottom: 0, left: "50%", translate: "-50% 0", padding: "1rem", backgroundColor: "#000", display: "grid", justifyItems: "center", opacity: showingMenu ? 1 : 0.4, zIndex: "2" }}>
                 <svg style={{ width: "1rem", aspectRatio: "1/1", fill: "#fff", rotate: showingMenu ? "0deg" : "-180deg", transition: "rotate 1s, scale 600ms" }} onClick={() => {

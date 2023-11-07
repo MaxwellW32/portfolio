@@ -36,6 +36,8 @@ export default function Cubes() {
                 </div>
 
                 <Graph columnNames={weekDayColumnNames} positionValuesSeen={eachPosValue} />
+
+                <Cube />
             </section>
 
             <section style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "1rem", paddingBottom: "5rem" }}>
@@ -165,6 +167,68 @@ export default function Cubes() {
     )
 }
 
+function Cube() {
+    const cubeWidth = 100
+    const [offset, offsetSet] = useState(0)
+    const [opacityArr, opacityArrSet] = useState([0, 0, 0, 0, 0, 0])
+
+    useEffect(() => {
+        //animate opacity
+        const myInterval = setInterval(() => {
+            opacityArrSet(prevArr => {
+                const newArr = [...prevArr]
+
+                const usableIndexes: number[] = []
+                newArr.forEach((eachEl, eachElIndex) => {
+                    if (eachEl === 0) {
+                        usableIndexes.push(eachElIndex)
+                    }
+                })
+
+                if (usableIndexes.length === 0) {
+                    clearInterval(myInterval)
+                    return newArr
+                }
+
+                const randUsableIndex = usableIndexes[Math.floor(Math.random() * usableIndexes.length)]
+                newArr[randUsableIndex] = .8
+                return newArr
+            })
+        }, 1000)
+
+        return () => clearInterval(myInterval)
+    }, [])
+
+    const offsetInterval = useRef<undefined | NodeJS.Timer>(undefined)
+
+    return (
+        <div style={{ width: `${cubeWidth}px` }} className={styles.cubeBody}
+            onClick={() => {
+                if (!offsetInterval.current) {
+                    offsetInterval.current = setInterval(() => {
+                        offsetSet(prev => prev + 10)
+                    }, 400)
+                }
+            }}
+
+            onMouseMove={() => {
+                if (offsetInterval.current) {
+                    offsetSet(0)
+                    clearInterval(offsetInterval.current)
+                    offsetInterval.current = undefined
+                }
+            }}>
+            <div style={{ transform: `translateX(${-cubeWidth / 2 - offset}px) rotateY(-90deg)`, backgroundColor: "", opacity: opacityArr[0] }} className={styles.cubeFace}>left</div>
+            <div style={{ transform: `translateX(${cubeWidth / 2 + offset}px) rotateY(90deg)`, backgroundColor: "", opacity: opacityArr[1] }} className={styles.cubeFace}>right</div>
+
+            <div style={{ transform: `translateZ(${-cubeWidth / 2 - offset}px) rotateY(180deg)`, backgroundColor: "", opacity: opacityArr[2] }} className={styles.cubeFace}>back</div>
+            <div style={{ transform: `translateZ(${cubeWidth / 2 + offset}px) rotateX(0deg)`, backgroundColor: "", opacity: opacityArr[3] }} className={styles.cubeFace}>front</div>
+
+            <div style={{ transform: `translateY(${-cubeWidth / 2 - offset}px) rotateX(90deg)`, backgroundColor: "", opacity: opacityArr[4] }} className={styles.cubeFace}>top</div>
+            <div style={{ transform: `translateY(${cubeWidth / 2 + offset}px) rotateX(90deg) rotateY(180deg)`, backgroundColor: "", opacity: opacityArr[5] }} className={styles.cubeFace}>bottom</div>
+        </div>
+    )
+}
 
 function Graph({ columnNames, positionValuesSeen }: { columnNames: string[], positionValuesSeen: number[] }) {
 

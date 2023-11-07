@@ -88,3 +88,34 @@
         translate: 0 -300%;
     }
 }
+
+
+
+.cubeBody {
+    position: absolute;
+    aspect-ratio: 1/1;
+    transform-style: preserve-3d;
+    perspective: 1500px;
+    top: 0;
+    right: 0;
+    margin: 5rem;
+    animation: spin 10s infinite linear;
+}
+
+.cubeFace {
+    position: absolute;
+    width: 100%;
+    aspect-ratio: 1/1;
+    transition: opacity 600ms, transform 600ms;
+    pointer-events: none;
+    user-select: none;
+    border: 1px solid #fff;
+}
+
+
+@keyframes spin {
+    to {
+        transform: rotateY(360deg) rotateX(360deg);
+    }
+
+}
