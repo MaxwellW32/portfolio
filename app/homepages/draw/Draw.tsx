@@ -16,7 +16,7 @@ export default function Draw() {
 
     const timingsCurrentIndex = useRef(0)
     const position = useRef({ x: 0, y: 0 })
-    const directionXY = useRef({ dX: 1, dY: 1 })
+    const directionXY = useRef({ dX: 2, dY: 2 })
     const started = useRef(false)
     const playerRef = useRef<HTMLDivElement>(null!)
     const canvasHolder = useRef<HTMLDivElement>(null!)
@@ -52,7 +52,7 @@ export default function Draw() {
 
 
         if (side === "xSide") {
-            newEl.style.height = `${playerSize}px`
+            newEl.style.height = `${50}px`
             newEl.style.width = `${2}px`
             if (value > 0) {
                 //bang on left side vertical
@@ -65,7 +65,7 @@ export default function Draw() {
             }
 
         } else if (side === "ySide") {
-            newEl.style.width = `${playerSize}px`
+            newEl.style.width = `${50}px`
             newEl.style.height = `${2}px`
 
             if (value < 0) {
@@ -161,6 +161,8 @@ export default function Draw() {
 
     const start = () => {
         started.current = true
+        addAPoint("xSide", directionXY.current.dX)
+
 
         const firstButton = buttonHolder.current.childNodes[0] as HTMLButtonElement
         const secondButton = buttonHolder.current.childNodes[1] as HTMLButtonElement
@@ -182,7 +184,7 @@ export default function Draw() {
         <div style={{ backgroundColor: "#bbb", overflowY: "auto", display: "grid", gridTemplateRows: "1fr auto", }}>
             <div ref={canvasHolder} style={{ backgroundColor: "#eee", overflow: "scroll", position: "relative" }}>
                 <div ref={canvas} style={{ width: "1000000%", height: "1000000%", overflow: "scroll", backgroundColor: "#ddd", position: "relative", }}>
-                    <div ref={playerRef} style={{ width: `50px`, aspectRatio: "1/1", backgroundColor: "red", position: "absolute", top: "50%", left: "50%", translate: `${0}px ${0}px` }}></div>
+                    <div ref={playerRef} style={{ width: `10px`, aspectRatio: "1/1", backgroundColor: "red", position: "absolute", top: "50%", left: "50%", translate: `${0}px ${0}px` }}></div>
                 </div>
             </div>
 

@@ -5,11 +5,10 @@ import Mountain from '../mountain/Mountain'
 import { navRefGlobal } from '../../../Components/Useful/globalState'
 import { useAtom } from 'jotai'
 import Cubes from '../cubes/Cubes'
-import { useRouter } from 'next/navigation'
+import Router, { useRouter } from 'next/navigation'
 
 export default function Page({ params }: { params: { homepageNum: string } }) {
     const router = useRouter()
-    // <Draw key={3} />
     const [homepages, homepagesSet] = useState<JSX.Element[]>([<Mountain key={1} />, <Cubes key={2} />])
     const [currentIndex, currentIndexSet] = useState(() => {
         let seenNum = parseInt(params.homepageNum)
