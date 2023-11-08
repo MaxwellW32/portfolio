@@ -5,11 +5,12 @@ import Mountain from '../mountain/Mountain'
 import { navRefGlobal } from '../../../Components/Useful/globalState'
 import { useAtom } from 'jotai'
 import Cubes from '../cubes/Cubes'
-import Router, { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
+import Artistic from '../artistic/Artistic'
 
 export default function Page({ params }: { params: { homepageNum: string } }) {
     const router = useRouter()
-    const [homepages, homepagesSet] = useState<JSX.Element[]>([<Mountain key={1} />, <Cubes key={2} />])
+    const [homepages, homepagesSet] = useState<JSX.Element[]>([<Mountain key={1} />, <Cubes key={2} />, <Artistic key={3} />])
     const [currentIndex, currentIndexSet] = useState(() => {
         let seenNum = parseInt(params.homepageNum)
 
@@ -42,7 +43,7 @@ export default function Page({ params }: { params: { homepageNum: string } }) {
         <div style={{ gridArea: "b", display: "grid", gridTemplateRows: "100%", position: "relative" }}>
             {homepages[currentIndex]}
 
-            <div style={{ position: "fixed", bottom: 0, left: "50%", translate: "-50% 0", padding: "1rem", backgroundColor: "#000", display: "grid", justifyItems: "center", opacity: showingMenu ? 1 : 0.4, zIndex: "2" }}>
+            <div style={{ position: "fixed", bottom: 0, left: "50%", translate: "-50% 0", padding: "1rem", backgroundColor: "#000", display: "grid", justifyItems: "center", opacity: showingMenu ? 1 : 0.1, zIndex: "2" }}>
                 <svg style={{ width: "1rem", aspectRatio: "1/1", fill: "#fff", rotate: showingMenu ? "0deg" : "-180deg", transition: "rotate 1s, scale 600ms" }} onClick={() => {
                     const showingMenuLocal = !showingMenu
                     showingMenuSet(showingMenuLocal)

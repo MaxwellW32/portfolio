@@ -2,7 +2,9 @@
     --cubeSecondaryColor: "blue";
 }
 
-.cubesMainDiv {}
+.cubesMainDiv {
+    color: #fff;
+}
 
 .cubesMainDiv h1 {
     all: unset;
