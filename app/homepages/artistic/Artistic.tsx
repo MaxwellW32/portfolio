@@ -67,7 +67,7 @@ export default function Artistic() {
         <div className={styles.artisticMainDiv} style={{ backgroundColor: "#fff" }}>
             <nav style={{ background: "linear-gradient(to right, pink, #d48592)", display: "grid", gridTemplateColumns: "80%", justifyContent: "center", zIndex: "999", position: "relative" }}>
                 <div style={{ backgroundColor: "#fff", display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-around", padding: '.5rem 1rem', gap: "1rem" }}>
-                    <img style={{ height: "4rem" }} src={require("../../../public/homepages/artlogo.png").default.src} />
+                    <img style={{ height: "4rem" }} src={require("../../../public/homepages/artlogo.png").default.src} alt='logo' />
 
                     <p>FREE INSURED SHIPPING ON ALL DOMESTIC U.S ORDERS!</p>
 
@@ -137,7 +137,7 @@ export default function Artistic() {
                         return (
                             <div className={styles.arrivalItem}>
                                 <div style={{ position: "relative" }}>
-                                    <img style={{ objectFit: "cover", width: "100%", aspectRatio: "1/1", position: "relative" }} src={eachItem.image}
+                                    <img style={{ objectFit: "cover", width: "100%", aspectRatio: "1/1", position: "relative" }} src={eachItem.image} alt='itemImg'
 
                                         onMouseEnter={(e) => {
                                             const seenIm = e.target as HTMLImageElement
