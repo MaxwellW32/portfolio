@@ -148,7 +148,10 @@ export default function Artistic() {
                                             seenIm.src = eachItem.image
                                         }} />
 
-                                    <button style={{ position: "absolute", bottom: "1rem", left: "50%", translate: "-50% 0", whiteSpace: "nowrap", width: "80%", textAlign: "center", backgroundColor: "#fff", paddingBlock: ".5rem", textTransform: "capitalize" }}>Quick View</button>
+                                    <button style={{ position: "absolute", bottom: "1rem", left: "50%", translate: "-50% 0", whiteSpace: "nowrap", width: "80%", textAlign: "center", backgroundColor: "#fff", paddingBlock: ".5rem", textTransform: "capitalize" }} onMouseEnter={(e) => {
+                                        const seenEl = e.target as HTMLButtonElement
+                                        seenEl.style.filter = "brightness(1)"
+                                    }}>Quick View</button>
                                 </div>
 
                                 <p>{eachItem.title}</p>

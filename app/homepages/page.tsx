@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 
-export default function page() {
+export default function Page() {
     const router = useRouter()
     useEffect(() => {
         router.push("/homepages/0")
