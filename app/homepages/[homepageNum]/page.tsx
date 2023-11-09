@@ -30,8 +30,8 @@ export default function Page({ params }: { params: { homepageNum: string } }) {
         router.push(`/homepages/${currentIndex}`)
     }, [currentIndex])
 
+    //restore nav on page leave
     useEffect(() => {
-
         return () => {
             const seenNav = document.querySelector("#mainNav") as HTMLElement
             seenNav.style.display = "grid"
@@ -46,7 +46,9 @@ export default function Page({ params }: { params: { homepageNum: string } }) {
             <div style={{ position: "fixed", bottom: 0, left: "50%", translate: "-50% 0", padding: "1rem", backgroundColor: "#000", display: "grid", justifyItems: "center", opacity: showingMenu ? 1 : 0.1, zIndex: "2" }}>
                 <svg style={{ width: "1rem", aspectRatio: "1/1", fill: "#fff", rotate: showingMenu ? "0deg" : "-180deg", transition: "rotate 1s, scale 600ms" }} onClick={() => {
                     const showingMenuLocal = !showingMenu
+
                     showingMenuSet(showingMenuLocal)
+
                     if (showingMenuLocal) {
                         navRef!.style.display = "grid"
                     } else {

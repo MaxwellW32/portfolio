@@ -1,6 +1,11 @@
 .artisticMainDiv {
     color: #000;
     font-size: 16px;
+    font-family: var(--font-playfair_display);
+}
+
+.makeBold {
+    font-weight: 700;
 }
 
 .artisticMainDiv svg {
@@ -16,6 +21,11 @@
 .artisticMainDiv h2 {
     text-align: center;
     color: #fff;
+    font-weight: 700;
+}
+
+.artisticMainDiv h3 {
+    font-weight: 500;
 }
 
 .darkBackdrop::before {
@@ -23,23 +33,35 @@
     width: 100%;
     height: 100%;
     position: absolute;
-    background-color: rgba(0, 0, 0, 0.2);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4), transparent);
     top: 0;
     left: 0;
     z-index: -1;
 }
 
+
 .darkBackdrop {
     position: relative;
+    filter: brightness(.4);
+    animation: animFilterKeyframes 2s forwards;
     z-index: 1;
 }
 
+
+@keyframes animFilterKeyframes {
+    to {
+        filter: brightness(1);
+    }
+}
 
 .artisticMainDiv section {
     padding: 2rem;
     background-color: #fff;
     background-position: center;
     background-size: cover;
+    perspective: 200px;
+    transform-style: preserve-3d;
+    overflow: hidden;
 }
 
 
@@ -90,7 +112,7 @@
 }
 
 .navItemsCont>li>ul>li:hover {
-    background-color: rgb(255 179 191);
+    background-color: #9c4e59;
 }
 
 @media only screen and (max-width: 600px) {}
@@ -110,11 +132,15 @@
 }
 
 .arrivalItem>div:first-of-type>button {
-    display: none;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 600ms;
 }
 
 .arrivalItem>div:first-of-type:hover>button {
-    display: block;
+    opacity: 1;
+    filter: brightness(1);
+    pointer-events: all;
 }
 
 .arrivalItem>div:first-of-type>img::before {
@@ -126,9 +152,103 @@
     background-size: cover;
 }
 
+.itemAnim {
+    animation: itemAnimationKeyframes 1s;
+    animation-fill-mode: both;
+    animation-play-state: paused;
+}
+
+@keyframes itemAnimationKeyframes {
+    0% {
+        scale: .7;
+        opacity: 0;
+        transform: translateZ(-100px) translateX(-1000px);
+    }
+
+    100% {
+        scale: 1;
+        opacity: 1;
+        transform: translateZ(0px) translateX(0px);
+    }
+}
 
 .creditCardsCont>svg {
     width: 2rem;
     aspect-ratio: 1/1;
 
+}
+
+.artisticMainDiv * {
+    /* animation-iteration-count: infinite !important; */
+}
+
+
+.animOpacity {
+    animation: animOpacityKeyframes 1s;
+    opacity: 0;
+    animation-fill-mode: forwards;
+}
+
+@keyframes animOpacityKeyframes {
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+
+.fadeRotateIn {
+    animation: fadeRotateInKeyframes 2s;
+}
+
+@keyframes fadeRotateInKeyframes {
+    0% {
+        opacity: 0;
+        transform: translateZ(100px) rotateX(30deg);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateZ(0px);
+
+    }
+}
+
+
+
+.fadeBottomUp {
+    position: relative;
+    animation: fadeBottomUpKeyframes 2s;
+    animation-fill-mode: both;
+    animation-play-state: paused;
+}
+
+@keyframes fadeBottomUpKeyframes {
+    0% {
+        opacity: 0;
+        translate: 0 100px
+    }
+
+    100% {
+        opacity: 1;
+        translate: 0 0px
+    }
+}
+
+
+
+.transformTopDown {
+    position: relative;
+    animation: transformTopDownKeyframes 2s;
+}
+
+@keyframes transformTopDownKeyframes {
+    0% {
+        translate: 0 -100%
+    }
+
+    100% {
+        translate: 0 0px
+    }
 }
