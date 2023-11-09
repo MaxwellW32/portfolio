@@ -34,23 +34,23 @@
     height: 100%;
     position: absolute;
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4), transparent);
+    background-color: rgba(0, 0, 0, 0.6);
     top: 0;
     left: 0;
     z-index: -1;
+    animation: animFilterKeyframes 2s forwards;
 }
 
 
 .darkBackdrop {
     position: relative;
-    filter: brightness(.4);
-    animation: animFilterKeyframes 2s forwards;
     z-index: 1;
 }
 
 
 @keyframes animFilterKeyframes {
     to {
-        filter: brightness(1);
+        background-color: transparent;
     }
 }
 

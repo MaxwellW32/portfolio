@@ -133,7 +133,7 @@ export default function Artistic() {
 
     return (
         <div className={`${styles.artisticMainDiv} ${playfair_display.variable}`} style={{ backgroundColor: "#fff" }}>
-            <nav style={{ background: "linear-gradient(to right, pink, #d48592)", display: "grid", gridTemplateColumns: "min(1020px, 100%)", justifyContent: "center", zIndex: "999", position: "relative" }}>
+            <nav style={{ background: "linear-gradient(to right, pink, #d48592)", display: "grid", gridTemplateColumns: "min(1020px, 100%)", justifyContent: "center", zIndex: "10", position: "relative" }}>
                 <div className={styles.transformTopDown} style={{ backgroundColor: "#fff", display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-around", padding: '.5rem 1rem', gap: "1rem" }}>
                     <img style={{ height: "4rem" }} src={require("../../../public/homepages/artlogo.png").default.src} alt='logo' />
 
