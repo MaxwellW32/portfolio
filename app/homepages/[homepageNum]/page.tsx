@@ -6,11 +6,10 @@ import { navRefGlobal } from '../../../Components/Useful/globalState'
 import { useAtom } from 'jotai'
 import Cubes from '../cubes/Cubes'
 import { useRouter } from 'next/navigation'
-import Artistic from '../artistic/Artistic'
 
 export default function Page({ params }: { params: { homepageNum: string } }) {
     const router = useRouter()
-    const [homepages, homepagesSet] = useState<JSX.Element[]>([<Mountain key={1} />, <Cubes key={2} />, <Artistic key={3} />])
+    const [homepages, homepagesSet] = useState<JSX.Element[]>([<Mountain key={1} />, <Cubes key={2} />])
     const [currentIndex, currentIndexSet] = useState(() => {
         let seenNum = parseInt(params.homepageNum)
 
