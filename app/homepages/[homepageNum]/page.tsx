@@ -1,5 +1,5 @@
 "use client"
-import { useEffect, useLayoutEffect, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import styles from "./styles.module.css"
 import Mountain from '../mountain/Mountain'
 import { navRefGlobal } from '../../../Components/Useful/globalState'
@@ -23,21 +23,37 @@ export default function Page({ params }: { params: { homepageNum: string } }) {
         }
     })
     const [navRef, navRefSet] = useAtom(navRefGlobal)
-    const [showingMenu, showingMenuSet] = useState(true)
+    const [showingMenu, showingMenuSet] = useState(false)
 
     //update page
     useEffect(() => {
-        router.push(`/homepages/${currentIndex}`)
+        window.history.pushState('page2', 'Title', `/homepages/${currentIndex}`);
     }, [currentIndex])
 
     //restore nav on page leave
+    const mounted = useRef(false)
     useEffect(() => {
         return () => {
-            const seenNav = document.querySelector("#mainNav") as HTMLElement
-            seenNav.style.display = "grid"
+            if (mounted.current) {
+                const seenNav = document.querySelector("#mainNav") as HTMLElement
+                seenNav.style.display = "grid"
+            }
+
+            mounted.current = true
         }
     }, [])
 
+
+    //assign nav style
+    useEffect(() => {
+        if (!navRef) return
+
+        if (showingMenu) {
+            navRef.style.display = "grid"
+        } else {
+            navRef.style.display = "none"
+        }
+    }, [showingMenu, navRef])
 
     return (
         <div style={{ gridArea: "b", display: "grid", gridTemplateRows: "100%", position: "relative" }}>
@@ -45,16 +61,7 @@ export default function Page({ params }: { params: { homepageNum: string } }) {
 
             <div style={{ position: "fixed", bottom: 0, left: "50%", translate: "-50% 0", padding: "1rem", backgroundColor: "#000", display: "grid", justifyItems: "center", opacity: showingMenu ? 1 : 0.1, zIndex: "2" }}>
                 <svg style={{ width: "1rem", aspectRatio: "1/1", fill: "#fff", rotate: showingMenu ? "0deg" : "-180deg", transition: "rotate 1s, scale 600ms" }} onClick={() => {
-                    const showingMenuLocal = !showingMenu
-
-                    showingMenuSet(showingMenuLocal)
-
-                    if (showingMenuLocal) {
-                        navRef!.style.display = "grid"
-                    } else {
-                        navRef!.style.display = "none"
-                    }
-
+                    showingMenuSet(prev => !prev)
                 }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M384 480c35.3 0 64-28.7 64-64l0-320c0-35.3-28.7-64-64-64L64 32C28.7 32 0 60.7 0 96L0 416c0 35.3 28.7 64 64 64l320 0zM224 352c-6.7 0-13-2.8-17.6-7.7l-104-112c-6.5-7-8.2-17.2-4.4-25.9s12.5-14.4 22-14.4l208 0c9.5 0 18.2 5.7 22 14.4s2.1 18.9-4.4 25.9l-104 112c-4.5 4.9-10.9 7.7-17.6 7.7z" /></svg>
 
                 <div style={{ display: showingMenu ? "flex" : "none", flexWrap: "wrap", justifyContent: "center", gap: "1rem", }}>
