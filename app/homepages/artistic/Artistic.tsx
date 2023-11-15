@@ -232,7 +232,7 @@ export default function Artistic() {
                 <button className={styles.viewAllButton} style={{ justifySelf: "center", whiteSpace: "nowrap", textAlign: "center", backgroundColor: "#fff", paddingBlock: ".5rem", textTransform: "capitalize" }}>View All</button>
             </section>
 
-            <footer style={{ backgroundColor: "#69181a", padding: "4rem 2rem", color: "#fff", display: "grid", justifyItems: "center", gap: "2rem" }}>
+            <footer style={{ backgroundColor: "#69181a", padding: "4rem 2rem", color: "#fff", display: "grid", justifyItems: "center", gap: "2rem", overflow: 'hidden' }}>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
                     <div className={`${styles.fadeBottomUp}`} style={{ flex: "1 0 250px", animationDelay: "0ms" }}>
                         <h3>DON&apos;T SEE WHAT YOU&apos;RE LOOKING FOR?</h3>
