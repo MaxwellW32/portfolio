@@ -414,20 +414,22 @@ export default function TechHaven() {
             <section className={styles.thTopSection}>
                 <div className={styles.thtopsectionLeft}>
                     <h1 className={styles.mainHeadTh}>Welcome to Tech Haven</h1>
-                    <h3 className={styles.mainSubHeadTh}>Your Destination for Electronics Shopping</h3>
-                    <p className={styles.thtopsectionLeftP}>Welcome to Tech Haven, your one-stop destination for all your
-                        electronics shopping needs. We offer a wide range of products
+
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                        <Image alt="tech desktop image" width={800} height={800} className={styles.thtopsectionLeftImg} src={require('../../public/techHavenStuff/smallpc.png')} style={{ width: "200px", height: "200px" }} />
+                        <h3 className={styles.mainSubHeadTh}>Your Destination for Electronics Shopping</h3>
+                    </div>
+
+                    <p className={styles.thtopsectionLeftP}>We offer a wide range of products
                         including smartphones, laptops, cameras, smartwatches, and accessories.
                         With our user-friendly interface and secure checkout process, you can shop with
                         confidence knowing that your personal information is safe. Stay up-to-date with the
                         latest gadgets and electronics at Tech Haven, where your tech dreams come true!
                     </p>
-
-                    <Image alt="" fill={true} className={styles.thtopsectionLeftImg} src={require('../../public/techHavenStuff/smallpc.png')} />
-                    <p className={styles.thtopsectionLeftSecP}>Explore the Latest Gadgets and Electronics at Tech Haven</p>
                 </div>
             </section>
             <section>
+                <h4 style={{ marginBlock: "1rem", fontWeight: "bold" }} >Explore the Latest Gadgets and Electronics at Tech Haven</h4>
                 <ProductDisplay chosenName='desktop' />
             </section>
             <section>
