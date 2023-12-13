@@ -3,6 +3,13 @@
   display: revert;
 }
 
+
+*,
+*::before,
+*::after {
+  /* border: 1px solid red !important; */
+}
+
 html {
   scroll-behavior: smooth;
   scroll-padding: 50px 0 0 50px;
@@ -227,11 +234,6 @@ button:hover {
   filter: brightness(90%);
 }
 
-*,
-*::before,
-*::after {
-  border: 1px solid red !important;
-}
 
 #player {
   background-color: green;
