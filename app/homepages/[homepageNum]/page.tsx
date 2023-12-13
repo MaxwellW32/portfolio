@@ -2,7 +2,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import styles from "./styles.module.css"
 import Mountain from '../mountain/Mountain'
-import { navRefGlobal } from '../../../Components/Useful/globalState'
+import { navRefGlobal } from '../../../utility/globalState'
 import { useAtom } from 'jotai'
 import Cubes from '../cubes/Cubes'
 import { useRouter } from 'next/navigation'

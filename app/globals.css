@@ -5,12 +5,11 @@
 
 html {
   scroll-behavior: smooth;
-  color: rgb(var(--blackSwitch));
   scroll-padding: 50px 0 0 50px;
-  background-color: rgb(var(--whiteSwitch));
   min-height: 100%;
   display: grid;
   grid-template-rows: 100%;
+  background-color: #000;
 }
 
 body {
@@ -21,6 +20,11 @@ body {
     "b";
   grid-template-columns: 1fr;
   overflow-y: auto;
+}
+
+#rootDiv {
+  background-color: rgb(var(--whiteSwitch));
+  color: rgb(var(--blackSwitch));
 }
 
 *,

@@ -157,7 +157,7 @@ function Home() {
       imgUrl:
         "https://images.pexels.com/photos/4968391/pexels-photo-4968391.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       text: "Eccomerce",
-      link: "/techHaven",
+      link: "/ecommerce",
     },
     {
       imgUrl:

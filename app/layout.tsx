@@ -1,3 +1,4 @@
+import ThemeProvider from '../utility/ThemeProvider'
 import './globals.css'
 import Navbar from './NavBar'
 
@@ -15,8 +16,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Navbar />
-        {children}
+        <ThemeProvider>
+          <Navbar />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   )
