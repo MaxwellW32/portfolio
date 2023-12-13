@@ -366,6 +366,7 @@ function Home() {
             expertise and advice. I are happy to assist you with know-how and
             experience in your daily business.
           </p>
+
           <article className={styles.servicesCont}>
             <div>
               <img
