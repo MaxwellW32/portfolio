@@ -1,11 +1,11 @@
 "use client"
 import styles from './page.module.css'
 // import { Inter } from 'next/font/google'
-import TitleText from './HomePageComponents/TitleText';
-import MyPlayer from "./HomePageComponents/MyPlayer"
+import TitleText from '../Components/home/TitleText';
+import MyPlayer from "../Components/home/MyPlayer"
 
 import Link from 'next/link'
-import ContactForm from './HomePageComponents/ContactForm';
+import ContactForm from '../Components/home/ContactForm';
 import { useEffect, useState } from 'react';
 
 

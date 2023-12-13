@@ -213,7 +213,7 @@ export default function Pizza() {
 
                 <article>
                     <h3>Fast and Reliable Delivery</h3>
-                    <p>Craving pizza but don't want to leave the house? No problem! CraveSlice offers fast and reliable delivery services straight to your doorstep. Enjoy the convenience of having your favorite pizza delivered hot and fresh.</p>
+                    <p>Craving pizza but don&apos;t want to leave the house? No problem! CraveSlice offers fast and reliable delivery services straight to your doorstep. Enjoy the convenience of having your favorite pizza delivered hot and fresh.</p>
                 </article>
 
                 <article>
@@ -223,7 +223,7 @@ export default function Pizza() {
 
                 <article>
                     <h3>Join Our Loyalty Program</h3>
-                    <p>Become a CraveSlice VIP by joining our loyalty program. Earn points with every purchase and enjoy exclusive discounts and special offers. It's our way of saying thank you for being a part of the CraveSlice family.</p>
+                    <p>Become a CraveSlice VIP by joining our loyalty program. Earn points with every purchase and enjoy exclusive discounts and special offers. It&apos;s our way of saying thank you for being a part of the CraveSlice family.</p>
                 </article>
             </section>
 
