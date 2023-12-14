@@ -4,11 +4,6 @@
 }
 
 
-*,
-*::before,
-*::after {
-  /* border: 1px solid red !important; */
-}
 
 html {
   scroll-behavior: smooth;
@@ -39,11 +34,11 @@ body {
 *::after {
   box-sizing: border-box;
   transition: background-color 400ms;
+  /* border: 1px solid red !important */
 }
 
 /* Reapply the pointer cursor for anchor tags */
-a,
-button {
+a {
   cursor: revert;
 }
 
@@ -61,10 +56,9 @@ img {
 }
 
 svg {
-  max-inline-size: 100%;
-  max-block-size: 100%;
   transition: scale 600ms;
-  ;
+  aspect-ratio: 1/1;
+  width: 1rem;
 }
 
 svg:hover {

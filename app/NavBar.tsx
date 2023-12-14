@@ -76,6 +76,12 @@ export default function Navbar() {
                   Contact Us
                 </Link>
               </li>
+
+              <li className={styles.subMenuItem}>
+                <Link href="/lets-build-your-website">
+                  Let&apos;s build your website
+                </Link>
+              </li>
             </ul>
           </li>
 

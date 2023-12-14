@@ -1,0 +1,7 @@
+.mainEl>*:first-child {
+    flex: var(--RUFirstElementFlex)
+}
+
+.mainEl>*:last-child {
+    flex: var(--RUSecondElementFlex);
+}

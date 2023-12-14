@@ -1,0 +1,36 @@
+.mainForm svg {
+    aspect-ratio: 1/1;
+    width: 1rem;
+    fill: rgb(var(--blackSwitch));
+}
+
+.mainForm h3 {
+    font-weight: bold;
+}
+
+.formSection {}
+
+.formSection {
+    display: grid;
+    padding-left: .7rem;
+    overflow-y: auto;
+    align-content: flex-start;
+}
+
+.mainForm label {
+    margin: .5rem auto;
+    padding: 0;
+
+}
+
+.mainForm input::placeholder {
+    opacity: .6;
+    text-transform: capitalize;
+}
+
+.mainForm input {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    color: rgb(var(--blackSwitch));
+    border-bottom: 1px solid rgb(var(--blackSwitch) / 50%)
+}
