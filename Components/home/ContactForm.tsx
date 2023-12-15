@@ -2,7 +2,6 @@
 import { useState } from "react";
 import styles from '../../app/page.module.css'
 import emailjs from "@emailjs/browser";
-import axios from 'axios';
 
 export default function ContactForm() {
 

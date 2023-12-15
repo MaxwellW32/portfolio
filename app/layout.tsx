@@ -1,6 +1,7 @@
 import ThemeProvider from '../utility/ThemeProvider'
 import './globals.css'
 import Navbar from './NavBar'
+import { Toaster } from "react-hot-toast"
 
 export const metadata = {
   title: 'Portfolio',
@@ -17,6 +18,10 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <ThemeProvider>
+          <Toaster
+            position="top-center"
+            reverseOrder={false}
+          />
           <Navbar />
           {children}
         </ThemeProvider>

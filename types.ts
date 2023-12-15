@@ -23,7 +23,7 @@ export const clientFormScheme = z.object({
         existingMaterials: z.string(),
     }),
     content: z.object({
-        providingContent: z.boolean(),
+        providingContent: z.string(),
         preferredContentTypes: z.string(),
         requiredFeatures: z.string(),
     }),
